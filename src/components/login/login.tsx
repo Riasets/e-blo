@@ -1,5 +1,6 @@
 import Button from '@material-ui/core/Button';
 import FormControl from '@material-ui/core/FormControl';
+import Grid from '@material-ui/core/Grid';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import Paper from '@material-ui/core/Paper';
@@ -15,6 +16,7 @@ class Login extends React.Component {
     public render() {
 
         return (
+            <Grid container >
             <Paper >
                 <h3>Login</h3>
                 <FormControl >
@@ -30,6 +32,7 @@ class Login extends React.Component {
                 </Button>
                 <Link to='/register'>Зарегистрироваться</Link>
             </Paper>
+            </Grid>
         );
     }
 }
