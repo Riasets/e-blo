@@ -1,0 +1,13 @@
+.login-paper {
+    /*width: 33%;*/
+    max-width: 600px;
+    min-width: 310px;
+}
+
+.login-form{
+    margin-top: 72px;
+}
+
+.login-paper__input-field {
+    width: 60%;
+}

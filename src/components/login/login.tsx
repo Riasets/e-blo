@@ -7,6 +7,8 @@ import Paper from '@material-ui/core/Paper';
 import * as React from 'react';
 import {Link} from "react-router-dom";
 
+import './login.css';
+
 class Login extends React.Component {
 
     constructor(props: any) {
@@ -16,22 +18,36 @@ class Login extends React.Component {
     public render() {
 
         return (
-            <Grid container >
-            <Paper >
-                <h3>Login</h3>
-                <FormControl >
-                    <InputLabel htmlFor="email-simple">Э-мейл</InputLabel>
-                    <Input id="email-simple"  />
-                </FormControl>
-                <FormControl >
-                    <InputLabel htmlFor="password-simple">Пароль</InputLabel>
-                    <Input id="password-simple"  />
-                </FormControl>
-                <Button variant="outlined" size="large" color="primary">
-                    Войти
-                </Button>
-                <Link to='/register'>Зарегистрироваться</Link>
-            </Paper>
+            <Grid container={true} className={"login-form"}  alignItems={"center"} justify={"center"}>
+                <Grid item={true} className={"login-paper"} lg={4} >
+                    <Paper >
+                            <Grid container={true} direction={"column"} justify={"center"} alignItems={"center"}>
+                                <Grid item={true}>
+                                    <h3>Вход</h3>
+                                </Grid>
+                                <Grid  item={true} xs={10} lg={8}>
+                                    <FormControl required={true} fullWidth={true} >
+                                        <InputLabel htmlFor="email-simple" >Э-мейл</InputLabel>
+                                        <Input id="email-simple" fullWidth={true}  />
+                                    </FormControl>
+                                </Grid>
+                                <Grid  item={true}>
+                                    <FormControl  required={true}>
+                                        <InputLabel htmlFor="password-simple">Пароль</InputLabel>
+                                        <Input id="password-simple"  />
+                                    </FormControl>
+                                </Grid>
+                                <Grid item={true}>
+                                    <Button  variant="outlined" size="large" color="primary">
+                                        Войти
+                                    </Button>
+                                </Grid>
+                                <Grid item={true}>
+                                    <Link to='/register'>Зарегистрироваться</Link>
+                                </Grid>
+                            </Grid>
+                    </Paper>
+                </Grid>
             </Grid>
         );
     }
