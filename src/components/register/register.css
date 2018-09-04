@@ -1,0 +1,13 @@
+.register-paper {
+    /*width: 33%;*/
+    max-width: 600px;
+    min-width: 310px;
+}
+
+.register-form{
+    margin-top: 72px;
+}
+
+.register-paper__input-field {
+    width: 60%;
+}

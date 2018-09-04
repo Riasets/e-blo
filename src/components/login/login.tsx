@@ -22,27 +22,27 @@ class Login extends React.Component {
                 <Grid item={true} className={"login-paper"} lg={4} >
                     <Paper >
                             <Grid container={true} direction={"column"} justify={"center"} alignItems={"center"}>
-                                <Grid item={true}>
+                                <Grid item={true}  style={{margin: 15}}>
                                     <h3>Вход</h3>
                                 </Grid>
-                                <Grid  item={true} xs={10} lg={8}>
-                                    <FormControl required={true} fullWidth={true} >
+                                <Grid  item={true} className={"login-paper__input-field"} style={{margin: 15}}>
+                                    <FormControl fullWidth={true} required={true} >
                                         <InputLabel htmlFor="email-simple" >Э-мейл</InputLabel>
                                         <Input id="email-simple" fullWidth={true}  />
                                     </FormControl>
                                 </Grid>
-                                <Grid  item={true}>
-                                    <FormControl  required={true}>
+                                <Grid  item={true} className={"login-paper__input-field"} style={{margin: 15}}>
+                                    <FormControl fullWidth={true} required={true} >
                                         <InputLabel htmlFor="password-simple">Пароль</InputLabel>
                                         <Input id="password-simple"  />
                                     </FormControl>
                                 </Grid>
-                                <Grid item={true}>
+                                <Grid item={true} style={{margin: 15}}>
                                     <Button  variant="outlined" size="large" color="primary">
                                         Войти
                                     </Button>
                                 </Grid>
-                                <Grid item={true}>
+                                <Grid item={true} style={{margin: 15}}>
                                     <Link to='/register'>Зарегистрироваться</Link>
                                 </Grid>
                             </Grid>
