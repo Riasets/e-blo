@@ -25,16 +25,21 @@ class Header extends React.Component {
     }
     public render() {
 
+
         return (
                 <Paper>
                 <Tabs
                 fullWidth = {true}
                 value={this.state.value}
                 onChange = {this.handleChange}>
-                    <Tab icon={<EventNoteIcon/>} label="Расписание"/>
-                    <Tab icon={<AccountCircleIcon/>} label="Друзья"/>
-                    <Tab icon={<SettingsIcon/>} label="Настройки"/>
-                    <Tab icon={<SearchIcon/>} label="Поиск"/>
+                    // @ts-ignore
+                    <Tab icon={<EventNoteIcon/>} component={Link} to='/schedule' label="Расписание"/>
+                    // @ts-ignore
+                    <Tab icon={<AccountCircleIcon/>} component={Link} to='/friends' label="Друзья"/>
+                    // @ts-ignore
+                    <Tab icon={<SettingsIcon/>} component={Link} to='/settings' label="Настройки"/>
+                    // @ts-ignore
+                    <Tab icon={<SearchIcon/>} component={Link} to='/search' label="Поиск"/>
                     // @ts-ignore
                     <Tab icon={<PersonIcon/>} component={Link} to='/login' label="Войти"/>
                 </Tabs>
