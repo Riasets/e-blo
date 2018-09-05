@@ -5,7 +5,9 @@ import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import Paper from '@material-ui/core/Paper';
 import * as React from 'react';
+import {connect} from "react-redux";
 import {Link} from "react-router-dom";
+import ActionType from '../../store/actions/actions';
 
 import './login.css';
 
@@ -14,6 +16,12 @@ class Login extends React.Component {
     constructor(props: any) {
         super(props);
     };
+
+    public const mapDispatchToProps = (dispatch) => ({
+        onLogin: (email: string, password: string) => {
+            dispatch(ActionType.login({email, password}));
+        },
+    });
 
     public render() {
 
@@ -53,4 +61,5 @@ class Login extends React.Component {
     }
 }
 
-export default Login;
+
+export default connect()(Login);
