@@ -7,7 +7,7 @@ import PersonIcon from '@material-ui/icons/Person';
 import SearchIcon from '@material-ui/icons/Search';
 import SettingsIcon from '@material-ui/icons/Settings';
 import * as React from 'react';
-import { Link } from 'react-router-dom';
+import {NavLink, withRouter} from 'react-router-dom';
 
 class Header extends React.Component {
 
@@ -24,8 +24,6 @@ class Header extends React.Component {
        this.setState({value: newValue});
     }
     public render() {
-
-
         return (
                 <Paper>
                 <Tabs
@@ -33,15 +31,15 @@ class Header extends React.Component {
                 value={this.state.value}
                 onChange = {this.handleChange}>
                     // @ts-ignore
-                    <Tab icon={<EventNoteIcon/>} component={Link} to='/schedule' label="Расписание"/>
+                    <Tab icon={<EventNoteIcon/>} component={NavLink} to='/schedule' label="Расписание"/>
                     // @ts-ignore
-                    <Tab icon={<AccountCircleIcon/>} component={Link} to='/friends' label="Друзья"/>
+                    <Tab icon={<AccountCircleIcon/>} component={NavLink} to='/friends' label="Друзья"/>
                     // @ts-ignore
-                    <Tab icon={<SettingsIcon/>} component={Link} to='/settings' label="Настройки"/>
+                    <Tab icon={<SettingsIcon/>} component={NavLink} to='/settings' label="Настройки"/>
                     // @ts-ignore
-                    <Tab icon={<SearchIcon/>} component={Link} to='/search' label="Поиск"/>
+                    <Tab icon={<SearchIcon/>} component={NavLink} to='/search' label="Поиск"/>
                     // @ts-ignore
-                    <Tab icon={<PersonIcon/>} component={Link} to='/login' label="Войти"/>
+                    <Tab icon={<PersonIcon/>} component={NavLink} to='/login' label="Войти"/>
                 </Tabs>
             </Paper>
 
@@ -49,4 +47,4 @@ class Header extends React.Component {
     };
 }
 
-export default Header;
+export default withRouter(Header);

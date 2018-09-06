@@ -1,4 +1,3 @@
-import Button from '@material-ui/core/Button';
 import FormControl from '@material-ui/core/FormControl';
 import Grid from '@material-ui/core/Grid';
 import Input from '@material-ui/core/Input';
@@ -7,23 +6,44 @@ import Paper from '@material-ui/core/Paper';
 import * as React from 'react';
 import {connect} from "react-redux";
 import {Link} from "react-router-dom";
-import ActionType from '../../store/actions/actions';
+import {Actions} from '../../store/actions/actions';
 
 import './login.css';
+import {Dispatch} from "redux";
 
 class Login extends React.Component {
 
     constructor(props: any) {
         super(props);
+        this.state = {
+            email: '',
+            password: '',
+        };
+        this.handleChange =this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     };
 
-    public const mapDispatchToProps = (dispatch) => ({
-        onLogin: (email: string, password: string) => {
-            dispatch(ActionType.login({email, password}));
-        },
-    });
+    public handleChange(e:object){
+        // @ts-ignore
+        const {name, value} = e.target;
+        this.setState({[name]: value});
+    }
+
+    public handleSubmit(e:object){
+      // @ts-ignore
+        e.preventDefault();
+      // @ts-ignore
+        const {email, password} = this.state;
+      // @ts-ignore
+        const { login } = this.props;
+      login({email, password});
+      this.setState({email: '', password: ''});
+    };
 
     public render() {
+
+        // @ts-ignore
+        const {email, password} = this.state;
 
         return (
             <Grid container={true} className={"login-form"}  alignItems={"center"} justify={"center"}>
@@ -36,19 +56,19 @@ class Login extends React.Component {
                                 <Grid  item={true} className={"login-paper__input-field"} style={{margin: 15}}>
                                     <FormControl fullWidth={true} required={true} >
                                         <InputLabel htmlFor="email-simple" >Э-мейл</InputLabel>
-                                        <Input id="email-simple" fullWidth={true}  />
+                                        <Input value={email} name={"email"} onChange={this.handleChange} id="email-simple" fullWidth={true}  />
                                     </FormControl>
                                 </Grid>
                                 <Grid  item={true} className={"login-paper__input-field"} style={{margin: 15}}>
                                     <FormControl fullWidth={true} required={true} >
                                         <InputLabel htmlFor="password-simple">Пароль</InputLabel>
-                                        <Input id="password-simple"  />
+                                        <Input value={password} name={"password"} onChange={this.handleChange} id="password-simple"  />
                                     </FormControl>
                                 </Grid>
                                 <Grid item={true} style={{margin: 15}}>
-                                    <Button  variant="outlined" size="large" color="primary">
+                                    <button onClick={this.handleSubmit}>
                                         Войти
-                                    </Button>
+                                    </button>
                                 </Grid>
                                 <Grid item={true} style={{margin: 15}}>
                                     <Link to='/register'>Зарегистрироваться</Link>
@@ -62,4 +82,10 @@ class Login extends React.Component {
 }
 
 
-export default connect()(Login);
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+    login: (email: string, password: string) => {
+        dispatch(Actions.login({email, password}));
+    },
+});
+
+export default connect(null,mapDispatchToProps)(Login);

@@ -1,7 +1,7 @@
 import * as React from 'react';
 
-import Header from './components/header/header';
-import Main from './components/main/main';
+import Header from './containers/header/header';
+import Main from './containers/main/main';
 
 import './App.css';
 
