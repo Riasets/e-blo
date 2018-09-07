@@ -13,7 +13,7 @@ const initialState = {
 const Auth = ( state:object = initialState, action: object) => {
     // @ts-ignore
     switch (action.type) {
-        case ActionType.LOGIN: {
+        case ActionType.LOGIN_SAVE: {
             // @ts-ignore
             fetch('https://localhost:8000', {method: 'GET', headers: action.headers})
                 .then((res) => {

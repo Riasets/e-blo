@@ -2,6 +2,7 @@ export const AuthActions = {
     LOGIN: 'LOGIN',
     LOGOUT: 'LOGOUT',
     REGISTER: 'REGISTER',
+    LOGIN_SAVE: 'LOGIN_SAVE'
 };
 
 const getAuthActions = () => ({
