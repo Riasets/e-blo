@@ -2,39 +2,74 @@ import ActionType from '../actions/actions';
 
 const initialState = {
     email: null,
+    error: false,
     isAdmin: null,
+    isLoading: false,
     logged: false,
     name: null,
     schedule: null,
+    status: null,
     token: null,
 };
 
 // @ts-ignore
-const Auth = ( state:object = initialState, action: object) => {
+const Auth = ( state:object = initialState, action) => {
     // @ts-ignore
     switch (action.type) {
-        case ActionType.LOGIN_SAVE: {
-            // @ts-ignore
-            fetch('https://localhost:8000', {method: 'GET', headers: action.headers})
-                .then((res) => {
-                        return res.json();
-                    }
-                )
-                .then((res) => {
+        case ActionType.LOGIN_SUCCESS: {
                     return {
                         ...state,
-                        email: res.email,
-                        isAdmin: res.isAdmin,
+                        email: action.payload.email,
+                        error: false,
+                        isAdmin: action.payload.isAdmin,
+                        isLoading: false,
                         logged: true,
-                        name: res.name,
-                        schedule: res.schedule,
-                        token: res.token,
+                        name: action.payload.name,
+                        schedule: action.payload.schedule,
+                        token: action.payload.token,
                     }
-                })
-                .catch((err) => {
-                    return state
-                });
-            break;
+        }
+        case ActionType.LOGIN_ERROR: {
+            return {
+                ...initialState,
+                error: true,
+                logged: false,
+            }
+        }
+        case ActionType.LOGIN_LOAD: {
+            return{
+                ...initialState,
+                error: false,
+                isLoading: true,
+                logged: false,
+            }
+        }
+        case ActionType.REGISTER_LOAD: {
+            return{
+                ...state,
+                error: false,
+                isLoading: true,
+                logged: false,
+                status: false,
+            }
+        }
+        case ActionType.REGISTER_ERROR: {
+            return{
+                ...state,
+                error: true,
+                isLoading: false,
+                logged: false,
+                status: false,
+            }
+        }
+        case ActionType.REGISTER_SUCCESS: {
+            return{
+                ...state,
+                error: false,
+                isLoading: false,
+                logged: false,
+                status: 'registered'
+            }
         }
         default: {
             return state;

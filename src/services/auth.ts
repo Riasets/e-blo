@@ -6,6 +6,8 @@ const authFetches = {
             headers: user,
             method: "GET",
         };
+        (console as any).log(options);
+        (console as any).log(user);
         return fetch(api + '/api/login', options);
     },
     registerUserFetch: (user: FormData) => {

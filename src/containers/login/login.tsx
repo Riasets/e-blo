@@ -6,10 +6,10 @@ import Paper from '@material-ui/core/Paper';
 import * as React from 'react';
 import {connect} from "react-redux";
 import {Link} from "react-router-dom";
-import {Actions} from '../../store/actions/actions';
-
-import './login.css';
 import {Dispatch} from "redux";
+
+import {Actions} from '../../store/actions/actions';
+import './login.css';
 
 class Login extends React.Component {
 
@@ -36,7 +36,7 @@ class Login extends React.Component {
         const {email, password} = this.state;
       // @ts-ignore
         const { login } = this.props;
-      login({email, password});
+      login(email, password);
       this.setState({email: '', password: ''});
     };
 
@@ -84,7 +84,12 @@ class Login extends React.Component {
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
     login: (email: string, password: string) => {
-        dispatch(Actions.login({email, password}));
+        const header = {
+            'email': email,
+            'password': password,
+        };
+        // @ts-ignore
+        dispatch(Actions.login(header as Headers));
     },
 });
 
