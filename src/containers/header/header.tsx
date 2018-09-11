@@ -7,7 +7,10 @@ import PersonIcon from '@material-ui/icons/Person';
 import SearchIcon from '@material-ui/icons/Search';
 import SettingsIcon from '@material-ui/icons/Settings';
 import * as React from 'react';
-import {NavLink, withRouter} from 'react-router-dom';
+import {connect} from "react-redux";
+import {NavLink} from 'react-router-dom';
+import {Dispatch} from "redux";
+import {Actions} from "../../store/actions/actions";
 
 class Header extends React.Component {
 
@@ -17,13 +20,31 @@ class Header extends React.Component {
 
     constructor(props: any) {
         super(props);
-        this.state = { value: 0};
+        this.state = { value: 0 };
         this.handleChange = this.handleChange.bind(this);
+        this.Logout = this.Logout.bind(this);
     }
     public handleChange(event: any, newValue: number) {
        this.setState({value: newValue});
     }
+
+    public Logout(e: object){
+        // @ts-ignore
+        e.preventDefault();
+        // @ts-ignore
+        if (this.props.logged) {
+            // @ts-ignore
+            const { logout } = this.props;
+            logout();
+        }
+        // @ts-ignore
+        this.props.history.push('/login')
+            // TODO
+    }
+
     public render() {
+        // @ts-ignore
+        const log = this.props.logged? "Выйти" : "Войти";
         return (
                 <Paper>
                 <Tabs
@@ -39,7 +60,7 @@ class Header extends React.Component {
                     // @ts-ignore
                     <Tab icon={<SearchIcon/>} component={NavLink} to='/search' label="Поиск"/>
                     // @ts-ignore
-                    <Tab icon={<PersonIcon/>} component={NavLink} to='/login' label="Войти"/>
+                    <Tab icon={<PersonIcon/>} component={NavLink} to='/login' onClick={this.Logout} label={log}/>
                 </Tabs>
             </Paper>
 
@@ -47,4 +68,15 @@ class Header extends React.Component {
     };
 }
 
-export default withRouter(Header);
+function mapStateToProps(state: any) {
+    return {logged: state.Auth.logged};
+}
+
+
+const  mapDispatchToProps = (dispatch: Dispatch) => ({
+    logout: () => {
+        dispatch(Actions.logout());
+    }
+});
+
+export default connect(mapStateToProps,mapDispatchToProps)(Header);

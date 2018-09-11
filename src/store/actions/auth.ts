@@ -12,12 +12,12 @@ export const AuthActions = {
 
 const getAuthActions = () => ({
     login: (user: Headers) => ({type: AuthActions.LOGIN, payload: user}),
-    loginError: () => ({type: AuthActions.LOGIN_ERROR}),
+    loginError: (error: string) => ({type: AuthActions.LOGIN_ERROR, payload: error}),
     loginLoad: () => ({type: AuthActions.LOGIN_LOAD}),
     loginSuccess: (userInfo:object) => ({type: AuthActions.LOGIN_SUCCESS, payload: userInfo}),
     logout: () => ({type: AuthActions.LOGOUT}),
     register: (user:object) => ({type: AuthActions.REGISTER, payload: user}),
-    registerError: () => ({type: AuthActions.REGISTER_ERROR}),
+    registerError: (error: string) => ({type: AuthActions.REGISTER_ERROR, payload: error}),
     registerLoad: () => ({type: AuthActions.REGISTER_LOAD}),
     registerSuccess: () => ({type: AuthActions.REGISTER_SUCCESS}),
 });

@@ -6,9 +6,11 @@ import ActionType, {Actions} from '../actions/actions';
 // @ts-ignore
 function* callLogin({payload}){
         yield put(Actions.loginLoad());
-        const data = yield call(() => (fetches.loginFetch(payload).then( res => res.json())));
+        const data = yield call(() => (fetches.loginFetch(payload)
+            .then( res => res.json())
+            .catch(err => err)));
         if (data.error){
-            yield put(Actions.loginError());
+            yield put(Actions.loginError(data.error));
         } else {
             yield put(Actions.loginSuccess(data));
         }
@@ -18,10 +20,9 @@ function* callLogin({payload}){
 function* callRegister({payload}) {
 
         yield put(Actions.registerLoad());
-        const data = yield call(() => fetches.registerUserFetch(payload));
-        (console as any).log(data);
+        const data = yield call(() => fetches.registerUserFetch(payload).catch(err => err));
         if (data.error){
-            return put(Actions.registerError());
+            yield put(Actions.registerError(data.error));
         } else {
             yield put(Actions.registerSuccess());
         }

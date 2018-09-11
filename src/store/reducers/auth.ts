@@ -32,7 +32,7 @@ const Auth = ( state:object = initialState, action) => {
         case ActionType.LOGIN_ERROR: {
             return {
                 ...initialState,
-                error: true,
+                error: action.payload,
                 logged: false,
             }
         }
@@ -56,7 +56,7 @@ const Auth = ( state:object = initialState, action) => {
         case ActionType.REGISTER_ERROR: {
             return{
                 ...state,
-                error: true,
+                error: action.payload,
                 isLoading: false,
                 logged: false,
                 status: false,
@@ -69,6 +69,11 @@ const Auth = ( state:object = initialState, action) => {
                 isLoading: false,
                 logged: false,
                 status: 'registered'
+            }
+        }
+        case ActionType.LOGOUT: {
+            return{
+                ...initialState
             }
         }
         default: {
