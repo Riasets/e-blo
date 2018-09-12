@@ -8,7 +8,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import SettingsIcon from '@material-ui/icons/Settings';
 import * as React from 'react';
 import {connect} from "react-redux";
-import {NavLink} from 'react-router-dom';
+import {NavLink, withRouter} from 'react-router-dom';
 import {Dispatch} from "redux";
 import {Actions} from "../../store/actions/actions";
 
@@ -17,6 +17,7 @@ class Header extends React.Component {
     public state = {
         value: 0
     };
+    
 
     constructor(props: any) {
         super(props);
@@ -37,9 +38,12 @@ class Header extends React.Component {
             const { logout } = this.props;
             logout();
         }
+        (console as any).log(this.props);
         // @ts-ignore
-        this.props.history.push('/login')
-            // TODO
+        (console as any).log(this.props.history);
+        // @ts-ignore
+        const { history } = this.props;
+        history.push('/login');
     }
 
     public render() {
@@ -52,13 +56,25 @@ class Header extends React.Component {
                 value={this.state.value}
                 onChange = {this.handleChange}>
                     // @ts-ignore
-                    <Tab icon={<EventNoteIcon/>} component={NavLink} to='/schedule' label="Расписание"/>
+                    { this.props.logged && (
+                        // @ts-ignore
+                        <Tab icon={<EventNoteIcon/>} component={NavLink} to='/schedule' label="Расписание"/>
+                    )}
                     // @ts-ignore
-                    <Tab icon={<AccountCircleIcon/>} component={NavLink} to='/friends' label="Друзья"/>
-                    // @ts-ignore
-                    <Tab icon={<SettingsIcon/>} component={NavLink} to='/settings' label="Настройки"/>
-                    // @ts-ignore
-                    <Tab icon={<SearchIcon/>} component={NavLink} to='/search' label="Поиск"/>
+                    { this.props.logged && (
+                        // @ts-ignore
+                        < Tab icon={<AccountCircleIcon/>} component={NavLink} to='/friends' label="Друзья"/>
+                    )}
+                        // @ts-ignore
+                    { this.props.logged && (
+                        // @ts-ignore
+                        <Tab icon={<SettingsIcon/>} component={NavLink} to='/settings' label="Настройки"/>
+                    )}
+                        // @ts-ignore
+                    { this.props.logged && (
+                        // @ts-ignore
+                        <Tab icon={<SearchIcon/>} component={NavLink} to='/search' label="Поиск"/>
+                    )}
                     // @ts-ignore
                     <Tab icon={<PersonIcon/>} component={NavLink} to='/login' onClick={this.Logout} label={log}/>
                 </Tabs>
@@ -79,4 +95,5 @@ const  mapDispatchToProps = (dispatch: Dispatch) => ({
     }
 });
 
-export default connect(mapStateToProps,mapDispatchToProps)(Header);
+// @ts-ignore
+export default withRouter(connect(mapStateToProps,mapDispatchToProps)(Header));

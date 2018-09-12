@@ -9,10 +9,11 @@ import registerServiceWorker from './registerServiceWorker';
 import { persistor, store } from './store/storeConfig';
 
 
+
 ReactDOM.render(
     <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
-        <BrowserRouter>
+        <BrowserRouter >
         <App />
         </BrowserRouter>
         </PersistGate>

@@ -7,12 +7,15 @@ import Paper from "@material-ui/core/Paper";
 import * as React from 'react';
 import {Link} from "react-router-dom";
 
+import {connect} from "react-redux";
+import {Dispatch} from "redux";
 import "./register.css";
 
 class Register extends React.Component {
 
     constructor(props: any) {
         super(props);
+        // TODO
     };
 
     public render() {
@@ -58,4 +61,12 @@ class Register extends React.Component {
     }
 }
 
-export default Register;
+function mapStateToProps(state: any) {
+    return {RegisterInfo : {error : state.Auth.error,  isLoading: state.Auth.isLoading, status: state.Auth.status}}
+}
+
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+    // TODO
+});
+
+export default connect(mapStateToProps,mapDispatchToProps)(Register);
