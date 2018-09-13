@@ -38,9 +38,6 @@ class Header extends React.Component {
             const { logout } = this.props;
             logout();
         }
-        (console as any).log(this.props);
-        // @ts-ignore
-        (console as any).log(this.props.history);
         // @ts-ignore
         const { history } = this.props;
         history.push('/login');

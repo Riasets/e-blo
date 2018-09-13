@@ -6,13 +6,12 @@ const authFetches = {
             headers: user,
             method: "GET",
         };
-        (console as any).log(options);
-        (console as any).log(user);
         return fetch(api + '/api/login', options);
     },
-    registerUserFetch: (user: FormData) => {
+    registerUserFetch: (user: string) => {
         const options: RequestInit = {
             body: user,
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'},
             method: "POST",
         };
         return fetch(api + '/api/register', options);

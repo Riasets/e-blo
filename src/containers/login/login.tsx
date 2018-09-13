@@ -4,6 +4,7 @@ import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import Paper from '@material-ui/core/Paper';
 import * as React from 'react';
+import {ChangeEvent} from "react";
 import {connect} from "react-redux";
 import {Link, Redirect} from "react-router-dom";
 import {Dispatch} from "redux";
@@ -23,14 +24,14 @@ class Login extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     };
 
-    public handleChange(e:object){
+    public handleChange(e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>){
         // @ts-ignore
         const {name, value} = e.target;
         this.setState({[name]: value});
     }
 
-    public handleSubmit(e:object){
-      // @ts-ignore
+    // @ts-ignore
+    public handleSubmit(e:MouseEvent<HTMLButtonElement>){
         e.preventDefault();
       // @ts-ignore
         const {email, password} = this.state;
@@ -40,10 +41,18 @@ class Login extends React.Component {
       this.setState({email: '', password: ''});
     };
 
+    public componentWillUnmount(){
+        // @ts-ignore
+        const {redirect} = this.props;
+        redirect();
+    }
+
     public render() {
 
         // @ts-ignore
         const {email, password} = this.state;
+        // @ts-ignore
+        const {error} = this.props.AuthInfo;
         // @ts-ignore
         if (this.props.AuthInfo.logged) {
             return (<Redirect to="/schedule"/>)
@@ -70,6 +79,11 @@ class Login extends React.Component {
                                                id="password-simple"/>
                                     </FormControl>
                                 </Grid>
+                                { error &&
+                                (<Grid item={true} style={{margin: 5}}>
+                                    <p>{error}</p>
+                                </Grid>)
+                                }
                                 <Grid item={true} style={{margin: 15}}>
                                     <button onClick={this.handleSubmit}>
                                         Войти
@@ -92,6 +106,7 @@ function mapStateToProps(state: any){
 }
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
+
     login: (email: string, password: string) => {
         const header = {
             'email': email,
@@ -99,6 +114,9 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
         };
         // @ts-ignore
         dispatch(Actions.login(header as Headers));
+    },
+    redirect: () => {
+        dispatch(Actions.redirect());
     },
 });
 

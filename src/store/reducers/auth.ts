@@ -71,6 +71,13 @@ const Auth = ( state:object = initialState, action) => {
                 status: 'registered'
             }
         }
+        case ActionType.REDIRECT: {
+            return{
+                ...state,
+                error: initialState.error,
+                status: initialState.status,
+            }
+        }
         case ActionType.LOGOUT: {
             return{
                 ...initialState

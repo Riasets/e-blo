@@ -18,9 +18,11 @@ function* callLogin({payload}){
 
 // @ts-ignore
 function* callRegister({payload}) {
-
+        (console as any).log(payload);
         yield put(Actions.registerLoad());
-        const data = yield call(() => fetches.registerUserFetch(payload).catch(err => err));
+        const data = yield call(() => (fetches.registerUserFetch(payload)
+            .then(res => res.json())
+            .catch(err => err)));
         if (data.error){
             yield put(Actions.registerError(data.error));
         } else {
