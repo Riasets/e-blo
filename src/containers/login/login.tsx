@@ -6,9 +6,10 @@ import Paper from '@material-ui/core/Paper';
 import * as React from 'react';
 import {ChangeEvent} from "react";
 import {connect} from "react-redux";
-import {Link, Redirect} from "react-router-dom";
+import {Link} from "react-router-dom";
 import {Dispatch} from "redux";
 
+import authGuard from "../../HOCs/authGuard";
 import {Actions} from '../../store/actions/actions';
 import './login.css';
 
@@ -54,9 +55,9 @@ class Login extends React.Component {
         // @ts-ignore
         const {error} = this.props.AuthInfo;
         // @ts-ignore
-        if (this.props.AuthInfo.logged) {
+ /*       if (this.props.AuthInfo.logged) {
             return (<Redirect to="/schedule"/>)
-        } else {
+        } else {*/
             return (
                 <Grid container={true} className={"login-form"} alignItems={"center"} justify={"center"}>
                     <Grid item={true} className={"login-paper"} lg={4}>
@@ -98,7 +99,7 @@ class Login extends React.Component {
                 </Grid>
             );
         }
-    }
+   // }
 }
 
 function mapStateToProps(state: any){

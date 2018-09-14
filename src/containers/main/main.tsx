@@ -10,6 +10,7 @@ import Settings from '../settings/settings';
 
 class Main extends React.Component {
     public render() {
+
         return (
             <div>
                 <Switch>
