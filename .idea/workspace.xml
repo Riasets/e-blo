@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1b74bc10-5094-4ed3-9cf3-918c45a6ccda" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/containers/schedule/Timeline.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/containers/schedule/createEvent.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/containers/schedule/schedule.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/schedule/schedule.tsx" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -19,7 +18,7 @@
     <session id="421420601">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="16" />
+          <entry key="project.closed" value="17" />
           <entry key="project.open.time.19" value="1" />
           <entry key="project.open.time.2" value="2" />
           <entry key="project.open.time.20" value="1" />
@@ -33,16 +32,16 @@
           <entry key="project.open.time.35" value="1" />
           <entry key="project.open.time.37" value="1" />
           <entry key="project.open.time.5" value="1" />
-          <entry key="project.open.time.6" value="3" />
+          <entry key="project.open.time.6" value="4" />
           <entry key="project.open.time.67" value="1" />
           <entry key="project.open.time.7" value="1" />
-          <entry key="project.opened" value="20" />
+          <entry key="project.opened" value="21" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.js.language.service.starts">
         <counts>
           <entry key="TsLintLanguageService" value="19" />
-          <entry key="TypeScriptServerServiceImpl" value="20" />
+          <entry key="TypeScriptServerServiceImpl" value="21" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -78,7 +77,7 @@
           <entry key="JSON" value="58" />
           <entry key="PLAIN_TEXT" value="177" />
           <entry key="TypeScript" value="5516" />
-          <entry key="TypeScript JSX" value="9921" />
+          <entry key="TypeScript JSX" value="9951" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
@@ -87,7 +86,7 @@
           <entry key="json" value="58" />
           <entry key="md" value="177" />
           <entry key="ts" value="5516" />
-          <entry key="tsx" value="9921" />
+          <entry key="tsx" value="9951" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages" />
@@ -137,11 +136,14 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/containers/schedule/schedule.tsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="138">
-              <caret line="6" column="31" selection-start-line="6" selection-start-column="31" selection-end-line="6" selection-end-column="31" />
+            <state relative-caret-position="322">
+              <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+              <folding>
+                <element signature="e#0#31#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -155,7 +157,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/containers/schedule/createEvent.tsx">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="138">
@@ -248,6 +250,7 @@
         <option value="$PROJECT_DIR$/src/containers/main/main.tsx" />
         <option value="$PROJECT_DIR$/src/containers/schedule/Timeline.tsx" />
         <option value="$PROJECT_DIR$/src/containers/schedule/createEvent.tsx" />
+        <option value="$PROJECT_DIR$/src/containers/schedule/schedule.tsx" />
       </list>
     </option>
   </component>
@@ -279,6 +282,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -353,7 +357,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -416,12 +419,13 @@
       <workItem from="1536930650888" duration="1896000" />
       <workItem from="1537159377461" duration="3458000" />
       <workItem from="1537164119872" duration="6542000" />
-      <workItem from="1537260844477" duration="1166000" />
+      <workItem from="1537260844477" duration="2233000" />
+      <workItem from="1537346645536" duration="1141000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="130116000" />
+    <option name="totallyTimeSpent" value="132324000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -436,7 +440,7 @@
     <frame x="-8" y="-8" width="1696" height="1026" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22798553" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.22798553" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -450,8 +454,8 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.32915717" />
       <window_info anchor="bottom" id="TypeScript" order="9" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.3968637" side_tool="true" visible="true" weight="0.3257403" />
-      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.6031363" visible="true" weight="0.3257403" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.39746684" side_tool="true" visible="true" weight="0.3257403" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" sideWeight="0.60253316" visible="true" weight="0.3257403" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -745,10 +749,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/containers/schedule/schedule.tsx">
+    <entry file="file://$PROJECT_DIR$/src/containers/schedule/createEvent.tsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="138">
-          <caret line="6" column="31" selection-start-line="6" selection-start-column="31" selection-end-line="6" selection-end-column="31" />
+          <caret line="6" column="32" selection-start-line="6" selection-start-column="32" selection-end-line="6" selection-end-column="32" />
         </state>
       </provider>
     </entry>
@@ -759,10 +763,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/containers/schedule/createEvent.tsx">
+    <entry file="file://$PROJECT_DIR$/src/containers/schedule/schedule.tsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="138">
-          <caret line="6" column="32" selection-start-line="6" selection-start-column="32" selection-end-line="6" selection-end-column="32" />
+        <state relative-caret-position="322">
+          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+          <folding>
+            <element signature="e#0#31#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
