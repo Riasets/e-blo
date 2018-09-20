@@ -9,6 +9,7 @@ export const AuthActions = {
     REGISTER_ERROR: 'REGISTER_ERROR',
     REGISTER_LOAD: 'REGISTER_LOAD',
     REGISTER_SUCCESS: 'REGISTER_SUCCESS',
+    REFRESH_TOKEN: 'REFRESH_TOKEN',
 };
 
 const getAuthActions = () => ({
@@ -22,6 +23,7 @@ const getAuthActions = () => ({
     registerError: (error: string) => ({type: AuthActions.REGISTER_ERROR, payload: error}),
     registerLoad: () => ({type: AuthActions.REGISTER_LOAD}),
     registerSuccess: () => ({type: AuthActions.REGISTER_SUCCESS}),
+    refreshToken: () => ({type: AuthActions.REFRESH_TOKEN}),
 });
 
 export default getAuthActions();

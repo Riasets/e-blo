@@ -10,6 +10,7 @@ const initialState = {
     schedule: null,
     status: null,
     token: null,
+    expires_in: null,
 };
 
 // @ts-ignore
@@ -89,4 +90,5 @@ const Auth = ( state:object = initialState, action) => {
     }
 };
 
+export const getToken = (state: any) => ({token: state.Auth.token, expires_in: state.Auth.expires_in});
 export default Auth;

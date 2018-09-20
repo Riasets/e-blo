@@ -15,6 +15,13 @@ const authFetches = {
             method: "POST",
         };
         return fetch(api + '/api/register', options);
+    },
+    refreshTokenFetch: (token: string) => {
+        const options: RequestInit = {
+            headers: {token: token},
+            method: "GET"
+        };
+        return fetch(api + '/api/refresh', options);
     }
 };
 
