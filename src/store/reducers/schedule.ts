@@ -1,10 +1,10 @@
 import ActionType from '../actions/actions';
 
 const initialState = {
-  events: [],
-  schedule_id: null,
-  error: null,
-  isLoading: false,
+    error: null,
+    events: [],
+    isLoading: false,
+    schedule_id: null,
 };
 
 // @ts-ignore
@@ -19,8 +19,8 @@ const Schedule = (state:object = initialState, action: any) => {
        case ActionType.GET_SCHEDULE_ERROR: {
            return {
                ...state,
-               isLoading: false,
                error: action.payload,
+               isLoading: false,
            }
        }
        case ActionType.GET_SCHEDULE_SUCCESS: {
@@ -33,8 +33,8 @@ const Schedule = (state:object = initialState, action: any) => {
        case ActionType.POST_EVENT_ERROR: {
            return {
                ...state,
-               isLoading: false,
                error: action.payload,
+               isLoading: false,
            }
        }
        case ActionType.POST_EVENT_LOAD: {

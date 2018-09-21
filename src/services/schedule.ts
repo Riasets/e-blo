@@ -10,8 +10,8 @@ const scheduleFetches = {
     },
     postEventFetch: (event: any) => {
         const options: RequestInit = {
-            headers: event.token,
             body: event.event,
+            headers: event.token,
             method: "POST",
         };
         return fetch(api + '/api/event', options);

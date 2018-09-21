@@ -1,5 +1,5 @@
 import {all, fork} from "redux-saga/effects";
-import { watchCallLogin, watchCallRegister} from "./auth";
+import {watchCallLogin, watchCallRefreshToken, watchCallRegister} from "./auth";
 import {watchCallGetSchedule, watchCallPostEvent} from "./schedule";
 
 export default function* rootSaga(){
@@ -8,5 +8,6 @@ export default function* rootSaga(){
         fork(watchCallRegister),
         fork(watchCallGetSchedule),
         fork(watchCallPostEvent),
+        fork(watchCallRefreshToken),
     ]);
 }

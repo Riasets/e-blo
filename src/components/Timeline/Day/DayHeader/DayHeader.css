@@ -1,0 +1,20 @@
+.day-header-container{
+    background-color: #26a69a;
+    border-radius: 2px;
+    margin-bottom: 9px;
+}
+.day-header-container>h2{
+    color: white;
+    padding: 12px 12px 3px 12px;
+    margin: 0;
+    line-height: 24px;
+    font-size: 20px;
+    font-weight: normal;
+}
+.day-header-container>p{
+    padding: 0 12px 5px 12px;
+    margin: 0;
+    color: #c0f5f5f5;
+    line-height: 24px;
+    font-size: 14px;
+}

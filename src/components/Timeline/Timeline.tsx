@@ -1,10 +1,13 @@
 import * as React from 'react';
 
+import Day from "./Day/Day";
+import './timeline.css';
+
 class Timeline extends React.Component {
-    render() {
+    public render() {
         return (
-            <div>
-                Таймлайн
+            <div className={'timeline-container'}>
+                <Day />
             </div>
         );
     }

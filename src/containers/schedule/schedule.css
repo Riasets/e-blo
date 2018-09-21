@@ -1,0 +1,8 @@
+.schedule-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.schedule-item{
+    margin: 30px;
+}

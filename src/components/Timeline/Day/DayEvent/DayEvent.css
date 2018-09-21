@@ -1,0 +1,22 @@
+.day-event-container{
+    margin: 0 4px 9px 4px;
+    background-color: #fafafa;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.4);
+}
+
+.day-event-container>h2{
+    font-size: 16px;
+    line-height: 28px;
+    color: #424242;
+    font-weight: normal;
+    margin: 0;
+    padding: 0 7px 0 7px;
+}
+.day-event-container>p{
+    font-size: 12px;
+    line-height: 16px;
+    color: #757575;
+    padding: 0 8px 4px 8px;
+    margin: 0;
+}

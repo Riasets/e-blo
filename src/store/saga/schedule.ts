@@ -1,5 +1,5 @@
 import {takeEvery} from "redux-saga";
-import {call, put, select} from "redux-saga/effects";
+import {call, put, select, take} from "redux-saga/effects";
 import fetches from '../../services/index';
 import ActionType, {Actions} from '../actions/actions';
 import {getToken} from "../reducers/auth";
@@ -9,10 +9,13 @@ function* callGetSchedule(){
     let {token, expires_in} = yield select(getToken);
     if (expires_in < Date.now()){
         yield put(Actions.refreshToken());
-        token = yield select(getToken);
+        yield take(Actions.setNewToken);
+        const newToken = yield select(getToken);
+        token = newToken.token;
+        expires_in = newToken.expires_in;
     }
     // @ts-ignore
-    const data = yield call(()=>(fetches.getScheduleFetch({token: token} as Headers)
+    const data = yield call(()=>(fetches.getScheduleFetch({token} as Headers)
             .then( res => res.json())
             .catch( err => err.json())
     ));
@@ -29,10 +32,12 @@ function* callPostEvent({payload}){
     let {token, expires_in} = yield select(getToken);
     if (expires_in < Date.now()){
         yield put(Actions.refreshToken());
+        yield take(Actions.setNewToken);
         const newToken = yield select(getToken);
         token = newToken.token;
+        expires_in = newToken.expires_in;
     }
-    const data = yield call(() => (fetches.postEventFetch({...payload, token: token})
+    const data = yield call(() => (fetches.postEventFetch({...payload, token})
         .then(res => res.json())
         .catch(err => err.json())
     ));

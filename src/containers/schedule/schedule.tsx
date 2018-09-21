@@ -1,20 +1,38 @@
 import * as React from 'react';
-import Timeline from "./Timeline";
-import CreateEvent from "./createEvent";
+import {connect} from "react-redux";
+import {Dispatch} from "redux";
+
+import {Actions} from "../../store/actions/actions";
+
+import CreateEvent from "../../components/createElement/createEvent";
+import Timeline from "../../components/Timeline/Timeline";
+
+import './schedule.css';
+
 
 class Schedule extends React.Component {
     public render() {
         return (
-            <div>
-                <Timeline />
-                <CreateEvent/>
+            <div className={'schedule-container'}>
+                <div className="schedule-item">
+                    <Timeline />
+                </div>
+                <div className="schedule-item">
+                    <CreateEvent/>
+                </div>
             </div>
         );
     }
 }
 
-function mapStateToProps(){
-
+function mapStateToProps(state: any){
+    return {Schedule: {events: state.Schedule.events, schedule_id: state.Schedule.schedule_id}};
 }
 
-export default Schedule;
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+    getSchedule: () => {
+        dispatch(Actions.getSchedule());
+    }
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Schedule);

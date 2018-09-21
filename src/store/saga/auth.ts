@@ -1,9 +1,12 @@
 import {takeEvery} from "redux-saga";
-import {call, put} from "redux-saga/effects";
+import {call, put, select} from "redux-saga/effects";
 import fetches from '../../services/index';
+
 import ActionType, {Actions} from '../actions/actions';
-import {select} from "../../../node_modules/redux-saga/effects";
-import {getToken} from "../reducers/auth";
+
+import {getStatusRefreshingToken,getToken} from "../reducers/auth";
+
+
 
 // @ts-ignore
 function* callLogin({payload}){
@@ -34,12 +37,15 @@ function* callRegister({payload}) {
 // TODO
 // Почитать про take и ожидание конца рефреша токена
 function* callRefreshToken() {
-    yield put(Actions.tokenIsRefreshing)
-    const {token} = yield select(getToken);
-    const data = call(() => (fetches.refreshTokenFetch(token))
-        .then(res => res.json())
-        .catch(err => err.json()))
-    yield
+    if (!(yield select(getStatusRefreshingToken))) {
+        yield put(Actions.tokenIsRefreshing());
+        const {token} = yield select(getToken);
+        const data = call(() => (fetches.refreshTokenFetch(token))
+            .then(res => res.json())
+            .then(res => res.expires_in = Date.now() + 350000)
+            .catch(err => err.json()));
+        yield put(Actions.setNewToken(data));
+    }
 }
 
 export function* watchCallLogin() {
@@ -50,4 +56,8 @@ export function* watchCallLogin() {
 export function* watchCallRegister() {
     // @ts-ignore
     yield takeEvery(ActionType.REGISTER, callRegister)
+}
+
+export function* watchCallRefreshToken() {
+    yield takeEvery(ActionType.REFRESH_TOKEN, callRefreshToken)
 }

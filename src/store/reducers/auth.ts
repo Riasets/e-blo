@@ -3,6 +3,7 @@ import ActionType from '../actions/actions';
 const initialState = {
     email: null,
     error: false,
+    expires_in: null,
     isAdmin: null,
     isLoading: false,
     logged: false,
@@ -10,7 +11,7 @@ const initialState = {
     schedule: null,
     status: null,
     token: null,
-    expires_in: null,
+    tokenIsRefreshing: false,
 };
 
 // @ts-ignore
@@ -84,6 +85,20 @@ const Auth = ( state:object = initialState, action) => {
                 ...initialState
             }
         }
+        case ActionType.TOKEN_IS_REFRESHING: {
+            return {
+                ...state,
+                tokenIsRefreshing: true
+            }
+        }
+        case ActionType.SET_NEW_TOKEN: {
+            return {
+                ...state,
+                expires_in: action.payload.expires_in,
+                token: action.payload.token,
+                tokenIsRefreshing: false,
+            }
+        }
         default: {
             return state;
         }
@@ -91,4 +106,5 @@ const Auth = ( state:object = initialState, action) => {
 };
 
 export const getToken = (state: any) => ({token: state.Auth.token, expires_in: state.Auth.expires_in});
+export const getStatusRefreshingToken = (state: any) => (state.Auth.tokenIsRefreshing);
 export default Auth;

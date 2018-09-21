@@ -8,6 +8,13 @@ const authFetches = {
         };
         return fetch(api + '/api/login', options);
     },
+    refreshTokenFetch: (token: string) => {
+        const options: RequestInit = {
+            headers: {token},
+            method: "GET"
+        };
+        return fetch(api + '/api/refresh', options);
+    },
     registerUserFetch: (user: string) => {
         const options: RequestInit = {
             body: user,
@@ -16,13 +23,6 @@ const authFetches = {
         };
         return fetch(api + '/api/register', options);
     },
-    refreshTokenFetch: (token: string) => {
-        const options: RequestInit = {
-            headers: {token: token},
-            method: "GET"
-        };
-        return fetch(api + '/api/refresh', options);
-    }
 };
 
 export default authFetches

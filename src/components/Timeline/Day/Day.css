@@ -1,0 +1,8 @@
+.day-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #e0f2f1;
+    border-radius: 5px ;
+    width: 420px;
+}
