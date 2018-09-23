@@ -10,6 +10,7 @@ import * as React from 'react';
 import {connect} from "react-redux";
 import {NavLink, withRouter} from 'react-router-dom';
 import {Dispatch} from "redux";
+import NavBar from "../../components/navBar/navBar";
 import {Actions} from "../../store/actions/actions";
 
 class Header extends React.Component {
@@ -48,6 +49,7 @@ class Header extends React.Component {
         const log = this.props.logged? "Выйти" : "Войти";
         return (
                 <Paper>
+                    <NavBar/>
                 <Tabs
                 fullWidth = {true}
                 value={this.state.value}

@@ -3,7 +3,6 @@ import * as React from 'react';
 import Header from './containers/header/header';
 import Main from './containers/main/main';
 
-import 'typeface-rubik';
 
 import './App.css';
 

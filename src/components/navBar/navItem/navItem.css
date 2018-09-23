@@ -1,0 +1,22 @@
+.navitem-container{
+    width: 120px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.navitem-container>.navitem-info-container>h6{
+    color: #999999;
+    font-size: 14px;
+    line-height: 17px;
+    margin: 0;
+    letter-spacing: 0.09pt;
+    font-weight: 500;
+}
+
+.navitem-info-container{
+    margin: 11px 0 7px 0;
+}
+
+.navitem-icon{
+    color: #999999;
+}
