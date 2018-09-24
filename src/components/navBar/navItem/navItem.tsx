@@ -9,9 +9,9 @@ const NavItem = (props: any) => {
     };
 
     const Icon = props.Icon;
-
+    const active = (props.currentPath.toLowerCase().indexOf(props.path) === 0)? " active " : "";
     return (
-        <div className={'navitem-container'} onClick={handleClick}>
+        <div className={'navitem-container'+ active} onClick={handleClick}>
             <div className={'navitem-info-container'}>
                 <Icon className={"navitem-icon"}/>
                 <h6>{props.Name}</h6>

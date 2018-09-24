@@ -8,7 +8,6 @@ import './App.css';
 
 import "normalize.css";
 
-
 class App extends React.Component {
   public render() {
     return (

@@ -13,6 +13,14 @@
     font-weight: 500;
 }
 
+.active{
+    border-bottom: 2px #fff solid;
+}
+
+.active>.navitem-info-container>h6, .active>.navitem-info-container>.navitem-icon{
+    color: #fff;
+}
+
 .navitem-info-container{
     margin: 11px 0 7px 0;
 }

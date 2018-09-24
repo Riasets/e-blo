@@ -1,0 +1,33 @@
+.create-event-modal{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.create-event-container>h2{
+    margin: 30px 0 15px 0;
+    font-size: 24px;
+    color: #212121;
+    font-weight: 700;
+}
+
+.create-event-container>a{
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0.25pt;
+    font-weight: 500;
+    color: #fff;
+    background-color: #212121;
+    padding: 13px 94px 11px 94px;
+    border-radius: 9px;
+}
+.create-event-container>a>span{
+    font-size: 24px;
+    font-weight: 400;
+    position: relative;
+    top: 2px;
+    padding: 0 11px 0 0;
+}
+.create-event-modal-box{
+    align-self: center;
+    height: 50%;
+}

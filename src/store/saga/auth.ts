@@ -13,12 +13,11 @@ function* callLogin({payload}){
         yield put(Actions.loginLoad());
         const data = yield call(() => (fetches.loginFetch(payload)
             .then( res => res.json())
-            .then(res => res.expires_in = Date.now() + 350000)
             .catch(err => err)));
         if (data.error){
             yield put(Actions.loginError(data.error));
         } else {
-            yield put(Actions.loginSuccess(data));
+            yield put(Actions.loginSuccess({...data, expires_in: Date.now() + 350000}));
         }
 }
 
@@ -34,8 +33,7 @@ function* callRegister({payload}) {
             yield put(Actions.registerSuccess());
         }
 }
-// TODO
-// Почитать про take и ожидание конца рефреша токена
+
 function* callRefreshToken() {
     if (!(yield select(getStatusRefreshingToken))) {
         yield put(Actions.tokenIsRefreshing());
