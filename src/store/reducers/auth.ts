@@ -23,6 +23,7 @@ const Auth = ( state:object = initialState, action) => {
                         ...state,
                         email: action.payload.email,
                         error: false,
+                        expires_in: action.payload.expires_in,
                         isAdmin: action.payload.isAdmin,
                         isLoading: false,
                         logged: true,

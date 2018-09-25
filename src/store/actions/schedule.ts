@@ -15,7 +15,7 @@ const getScheduleActions = () => ({
     getScheduleError: () => ({type: ScheduleActions.GET_SCHEDULE_ERROR}),
     getScheduleLoad: () => ({type: ScheduleActions.GET_SCHEDULE_LOAD}),
     getScheduleSuccess: (schedule: object) => ({type: ScheduleActions.GET_SCHEDULE_SUCCESS, payload: schedule}),
-    postEvent: (event: object) => ({type: ScheduleActions.POST_EVENT, payload: event}),
+    postEvent: (event: string) => ({type: ScheduleActions.POST_EVENT, payload: event}),
     postEventError: () => ({type: ScheduleActions.POST_EVENT_ERROR}),
     postEventLoad: () => ({type: ScheduleActions.POST_EVENT_LOAD}),
     postEventSuccess: () => ({type: ScheduleActions.POST_EVENT_SUCCESS}),

@@ -12,6 +12,8 @@ import {Dispatch} from "redux";
 import {Actions} from "../../store/actions/actions";
 import "./register.css";
 
+import {encodeBody} from "../../utils/encode";
+
 class Register extends React.Component {
 
     constructor(props: any) {
@@ -119,11 +121,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
             'email': email,
             'password': password
         };
-        const info = [];
-        for (const key of Object.keys(body)) {
-            info.push(encodeURIComponent(key) + '=' + encodeURIComponent(body[key]))
-        }
-        dispatch(Actions.register(info.join('&')));
+        dispatch(Actions.register(encodeBody(body)));
     },
 });
 

@@ -1,5 +1,4 @@
-import {takeEvery} from "redux-saga";
-import {call, put, select} from "redux-saga/effects";
+import {call, put, select,takeEvery} from "redux-saga/effects";
 import fetches from '../../services/index';
 
 import ActionType, {Actions} from '../actions/actions';
@@ -17,7 +16,7 @@ function* callLogin({payload}){
         if (data.error){
             yield put(Actions.loginError(data.error));
         } else {
-            yield put(Actions.loginSuccess({...data, expires_in: Date.now() + 350000}));
+            yield put(Actions.loginSuccess({...data, expires_in: Date.now() + 35000}));
         }
 }
 
@@ -38,11 +37,11 @@ function* callRefreshToken() {
     if (!(yield select(getStatusRefreshingToken))) {
         yield put(Actions.tokenIsRefreshing());
         const {token} = yield select(getToken);
-        const data = call(() => (fetches.refreshTokenFetch(token))
+        const data = yield call(() => (fetches.refreshTokenFetch(token)
             .then(res => res.json())
-            .then(res => res.expires_in = Date.now() + 350000)
-            .catch(err => err.json()));
-        yield put(Actions.setNewToken(data));
+            .catch(err => err)));
+        (console as any).log({...data, expires_in: Date.now() + 35000});
+        yield put(Actions.setNewToken({...data, expires_in: Date.now() + 35000}));
     }
 }
 

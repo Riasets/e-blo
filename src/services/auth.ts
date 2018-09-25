@@ -10,7 +10,7 @@ const authFetches = {
     },
     refreshTokenFetch: (token: string) => {
         const options: RequestInit = {
-            headers: {token},
+            headers: {'token': token},
             method: "GET"
         };
         return fetch(api + '/api/refresh', options);

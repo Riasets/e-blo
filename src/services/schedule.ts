@@ -9,9 +9,10 @@ const scheduleFetches = {
         return fetch(api + '/api/schedule', options);
     },
     postEventFetch: (event: any) => {
+        (console as any).log(event);
         const options: RequestInit = {
             body: event.event,
-            headers: event.token,
+            headers: {'token': event.token, 'Content-Type': 'application/x-www-form-urlencoded'},
             method: "POST",
         };
         return fetch(api + '/api/event', options);

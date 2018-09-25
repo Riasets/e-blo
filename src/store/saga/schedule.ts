@@ -1,5 +1,4 @@
-import {takeEvery} from "redux-saga";
-import {call, put, select, take} from "redux-saga/effects";
+import {call, put, select, take, takeEvery} from "redux-saga/effects";
 import fetches from '../../services/index';
 import ActionType, {Actions} from '../actions/actions';
 import {getToken} from "../reducers/auth";
@@ -17,8 +16,9 @@ function* callGetSchedule(){
     // @ts-ignore
     const data = yield call(()=>(fetches.getScheduleFetch({token} as Headers)
             .then( res => res.json())
-            .catch( err => err.json())
+            .catch( err => err)
     ));
+    (console as any).log(data);
     if (data.error) {
         yield put(Actions.getScheduleError());
     } else {
@@ -37,10 +37,11 @@ function* callPostEvent({payload}){
         token = newToken.token;
         expires_in = newToken.expires_in;
     }
-    const data = yield call(() => (fetches.postEventFetch({...payload, token})
+    const data = yield call(() => (fetches.postEventFetch({event: payload, token})
         .then(res => res.json())
-        .catch(err => err.json())
+        .catch(err => err)
     ));
+    (console as any).log(data);
     if (data.error){
         yield put(Actions.postEventError());
     } else {
