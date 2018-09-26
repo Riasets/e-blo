@@ -1,12 +1,14 @@
 import * as React from 'react';
 
+import {numLessonToString, timeToString} from "../../../../utils/dayInfoParse";
 import './DayEvent.css';
 
 const DayEvent = (props: any) => {
+
     return (
         <div className={'day-event-container'}>
-            <h2>ГоВПенту (Стас)</h2>
-            <p>7 пара, 18:00 - 21:00</p>
+            <h2>{props.Event.name}</h2>
+            <p>{numLessonToString(props.Event.numberOfLesson)} {props.Event.isLesson? ",": ""} {timeToString(props.Event.start)} - {timeToString(props.Event.end)}</p>
         </div>
     );
 };

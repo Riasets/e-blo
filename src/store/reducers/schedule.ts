@@ -27,6 +27,7 @@ const Schedule = (state:object = initialState, action: any) => {
            return {
                ...state,
                events: action.payload.events,
+               isLoading: false,
                schedule_id: action.payload.scheduleId,
            }
        }

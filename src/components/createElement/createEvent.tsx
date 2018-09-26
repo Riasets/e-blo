@@ -17,6 +17,7 @@ class CreateEvent extends React.Component {
     public state = {
         description: "",
         end: "",
+        isLesson: false,
         name : "",
         numberOfLesson: "",
         open: false,
@@ -62,15 +63,17 @@ class CreateEvent extends React.Component {
             day: this.state.startDay,
             description: this.state.description,
             end: this.state.end,
+            isLesson: this.state.isLesson,
             name: this.state.name,
             numberOfLesson: this.state.numberOfLesson,
-            repeat: this.state.whenRepeat,
+            repeat: this.state.repeat? this.state.whenRepeat: 0,
             start: this.state.start,
         });
+        this.closeModal();
     }
 
     public render() {
-        const {start, end, name, description, repeat, numberOfLesson ,startDay, whenRepeat} = this.state;
+        const {start, end, name, description, repeat, numberOfLesson ,startDay, whenRepeat, isLesson} = this.state;
         const repeats = [{
                 name: "Каждый день",
                 value: 1
@@ -148,18 +151,33 @@ class CreateEvent extends React.Component {
                                     </FormControl>
                                 </div>
                                 <div className={"create-event-input-element"}>
-                                    <FormControl fullWidth={true}>
-                                        <TextField
-                                            value={numberOfLesson}
-                                            name={"numberOfLesson"}
-                                            onChange={this.handleChange}
-                                            label={"Номер пары"}
-                                            type={"number"}
-                                            required={true}
-
-                                        />
-                                    </FormControl>
+                                    <FormControlLabel
+                                        control={
+                                            <Switch
+                                                checked={isLesson}
+                                                name={"isLesson"}
+                                                onChange={this.handleToggle}
+                                                value="isLesson"
+                                            />
+                                        }
+                                        label="Это пара?"
+                                    />
                                 </div>
+                                { isLesson &&
+                                    <div className={"create-event-input-element"}>
+                                        <FormControl fullWidth={true}>
+                                            <TextField
+                                                value={numberOfLesson}
+                                                name={"numberOfLesson"}
+                                                onChange={this.handleChange}
+                                                label={"Номер пары"}
+                                                type={"number"}
+                                                required={true}
+
+                                            />
+                                        </FormControl>
+                                    </div>
+                                }
                                 <div className={"create-event-input-element"}>
                                     <FormControl fullWidth={true}>
                                         <TextField

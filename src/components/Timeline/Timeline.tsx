@@ -4,7 +4,11 @@ import {connect} from "react-redux";
 import Day from "./Day/Day";
 import './timeline.css';
 
-import {dateToDayDate, isItAfterThisDate, isItTimeForEvent, isThisDate} from "../../utils/dateParse";
+import 'react-perfect-scrollbar/dist/css/styles.css';
+
+import PerfectScrollbar from 'react-perfect-scrollbar'
+
+import {isItAfterThisDate, isItTimeForEvent, isThisDate} from "../../utils/dateParse";
 
 class Timeline extends React.Component {
 
@@ -16,17 +20,7 @@ class Timeline extends React.Component {
         super(props);
 
         this.createNextDays = this.createNextDays.bind(this);
-
-        const date = new Date(Date.now());
-        (console as any).log(date.toUTCString());
-        (console as any).log(dateToDayDate(date));
-        (console as any).log(isThisDate(new Date(), 0));
-        // @ts-ignore
-        (console as any).log(new Date(this.props.events[0].day));
-        date.setDate(date.getDate() + 40);
-        (console as any).log(date);
-        const d = new Date(Date.now());
-        (console as any).log(date.getTime() - d.getTime());
+        this.chooseEvents = this.chooseEvents.bind(this);
     }
 
    public createNextDays(){
@@ -41,7 +35,7 @@ class Timeline extends React.Component {
         const events: any[] = [];
         // @ts-ignore
        this.props.events.forEach((item: any, index: any) => {
-            if (isItAfterThisDate(item.day, numDay) && (isThisDate(item.day, numDay) || (item.repeat !== 0 && isItTimeForEvent(item.day, item.repeat, numDay)))){
+            if (isItAfterThisDate(new Date(item.day), numDay) && (isThisDate(new Date(item.day), numDay) || (item.repeat !== 0 && isItTimeForEvent(new Date(item.day), item.repeat, numDay)))){
                 events.push(item);
             }
         });
@@ -53,6 +47,8 @@ class Timeline extends React.Component {
         return (
             <div className={'timeline-container'}>
                 <h2>Таймлайн</h2>
+                <PerfectScrollbar>
+                <div className={'timeline-days-container'}>
                 {
                     this.state.renderedDays.map(numDay =>
                         <Day
@@ -61,6 +57,8 @@ class Timeline extends React.Component {
                         Events={this.chooseEvents(numDay)}
                         DayNumber={numDay} />)
                 }
+                </div>
+                </PerfectScrollbar>
             </div>
         );
     }

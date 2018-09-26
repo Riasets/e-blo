@@ -24,17 +24,22 @@ export function isItTimeForEvent(startDay: Date, daysRepeat: number, numSecondDa
     const secondDate = new Date(Date.now());
     secondDate.setDate(secondDate.getDate() + numSecondDate);
     const firstDate = startDay;
-    let i = 0;
     const datesArray = [];
     while (firstDate <= secondDate) {
-        firstDate.setDate(firstDate.getDate() + daysRepeat*i);
+        firstDate.setDate(firstDate.getDate() + daysRepeat);
         datesArray.push(dateToDayDate(firstDate));
-        i++;
     }
-    i++;
-    firstDate.setDate(firstDate.getDate() + daysRepeat*i);
+    firstDate.setDate(firstDate.getDate() + daysRepeat);
     datesArray.push(dateToDayDate(firstDate));
-    return dateToDayDate(secondDate) in datesArray;
+    const secondDateString = dateToDayDate(secondDate);
+    let answer = false;
+    for (const el of datesArray){
+        if (el === secondDateString) {
+            answer = true;
+            break;
+        }
+    }
+    return answer;
 }
 
 export function weekDayToRussian(date: Date) {
@@ -61,11 +66,11 @@ export function monthToRussian(date: Date){
     };
     const dateString = date.toUTCString();
     const dateArray = dateString.split(" ");
-    return monthes[dateArray[1]];
+    return monthes[dateArray[2]];
 }
 
 export function getDate(date: Date){
     const dateString = date.toUTCString();
     const dateArray = dateString.split(" ");
-    return dateArray[2];
+    return String(Number(dateArray[1]));
 }

@@ -7,6 +7,7 @@ import './Day.css';
 
 import {getDate, monthToRussian, weekDayToRussian} from "../../../utils/dateParse";
 import {maxTime, minTime, numberLessons, sortEvents, timeToString} from "../../../utils/dayInfoParse";
+import {randomPhrase} from "../../../utils/randomPhrase";
 
 class Day extends React.Component {
     public state = {
@@ -43,7 +44,7 @@ class Day extends React.Component {
     }
 
     public render() {
-        const {date, endTime, startTime, numLessons, weekDay, month} = this.state;
+        const {date, endTime, startTime, numLessons, weekDay, month, sortedEvents} = this.state;
         return (
             <div className={'day-container'}>
                <DayHeader
@@ -53,9 +54,13 @@ class Day extends React.Component {
                    NumLessons={numLessons}
                    WeekDay={weekDay}
                    Month={month}/>
-               <DayEvent />
-               <DayEvent />
-               <DayEvent />
+                {sortedEvents[0] !== undefined  && sortedEvents.map((item, index) =>
+                    <DayEvent Event={item} key={index}/>
+                )
+                }
+                {sortedEvents[0] === undefined &&
+                    <h6>{randomPhrase()}</h6>
+                }
             </div>
         );
     }

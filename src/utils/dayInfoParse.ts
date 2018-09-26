@@ -1,10 +1,10 @@
 export function sortEvents(events: any[]){
     events.sort((a,b) => {
         if (a.start > b.start){
-            return -1;
+            return 1;
         }
         if (a.start < b.start){
-            return 1;
+            return -1;
         }
         return 0;
     });
@@ -36,13 +36,29 @@ export function maxTime(events: any[]){
 }
 
 export function timeToString(time: number) {
-    const hours = "";
+    let hours = "";
     for (const el of String(time/60).split('')) {
         if (el==='.'){
             break;
         }
-        hours.concat(el);
-        hours.concat(":");
+        hours = hours.concat(el);
     }
-    return hours.concat(String(time%60));
+    hours = hours.concat(":");
+    return hours.concat((time%60 < 10)? "0"+String(time%60):String(time%60));
+}
+
+export function numLessonToString(num: number){
+    const nums ={
+        1: "Первая",
+        2: "Вторая",
+        3: "Третья",
+        4: "Четвертая",
+        5: "Пятая",
+        6: "Шестая",
+        7: "Седьмая",
+        8: "Восьмая",
+        9: "Девятая",
+        10: "Десятая"
+    };
+    return nums[num];
 }

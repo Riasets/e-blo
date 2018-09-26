@@ -11,6 +11,17 @@ import './schedule.css';
 
 
 class Schedule extends React.Component {
+
+    constructor(props: any){
+        super(props);
+    }
+
+    public componentWillMount(){
+        // @ts-ignore
+        const {getSchedule} = this.props;
+        getSchedule();
+    }
+
     public render() {
         return (
             <div className={'schedule-container'}>
