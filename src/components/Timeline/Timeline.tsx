@@ -47,7 +47,7 @@ class Timeline extends React.Component {
         return (
             <div className={'timeline-container'}>
                 <h2>Таймлайн</h2>
-                <PerfectScrollbar>
+                <PerfectScrollbar onYReachEnd={this.createNextDays}>
                 <div className={'timeline-days-container'}>
                 {
                     this.state.renderedDays.map(numDay =>

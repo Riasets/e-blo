@@ -24,24 +24,44 @@ class Day extends React.Component {
         super(props);
     }
 
-    public componentWillMount() {
-        const date = new Date();
+    public componentWillMount(){
+        const stateDate = new Date();
         // @ts-ignore
-        date.setDate(date.getDate() + this.props.DayNumber);
+        stateDate.setDate(stateDate.getDate() + this.props.DayNumber);
         this.setState({
-            date: getDate(date),
+            date: getDate(stateDate),
             // @ts-ignore
-            endTime: timeToString(maxTime(this.props.Events)),
-            month: monthToRussian(date),
+            endTime: timeToString(maxTime( this.props.Events)),
+            month: monthToRussian(stateDate),
             // @ts-ignore
-            numLessons: numberLessons(this.props.Events),
+            numLessons: numberLessons( this.props.Events),
             // @ts-ignore
-            sortedEvents: sortEvents(this.props.Events),
+            sortedEvents: sortEvents( this.props.Events),
             // @ts-ignore
-            startTime: timeToString(minTime(this.props.Events)),
-            weekDay: weekDayToRussian(date),
-        })
+            startTime: timeToString(minTime( this.props.Events)),
+            weekDay: weekDayToRussian(stateDate),
+        });
     }
+
+    public componentWillReceiveProps(nextProps: any){
+        const stateDate = new Date();
+        // @ts-ignore
+        stateDate.setDate(stateDate.getDate() + nextProps.DayNumber);
+        this.setState({
+            date: getDate(stateDate),
+            // @ts-ignore
+            endTime: timeToString(maxTime( nextProps.Events)),
+            month: monthToRussian(stateDate),
+            // @ts-ignore
+            numLessons: numberLessons( nextProps.Events),
+            // @ts-ignore
+            sortedEvents: sortEvents( nextProps.Events),
+            // @ts-ignore
+            startTime: timeToString(minTime( nextProps.Events)),
+            weekDay: weekDayToRussian(stateDate),
+        });
+    }
+
 
     public render() {
         const {date, endTime, startTime, numLessons, weekDay, month, sortedEvents} = this.state;
