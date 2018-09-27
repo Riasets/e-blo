@@ -1,4 +1,4 @@
-import {FormControlLabel, MenuItem, Modal, Switch, TextField} from "@material-ui/core";
+import {FormControlLabel, FormHelperText, MenuItem, Modal, Switch, TextField} from "@material-ui/core";
 import FormControl from "@material-ui/core/FormControl";
 import Input from "@material-ui/core/Input";
 import InputLabel from "@material-ui/core/InputLabel";
@@ -17,6 +17,11 @@ class CreateEvent extends React.Component {
     public state = {
         description: "",
         end: "",
+        errorEnd: false,
+        errorName: false,
+        errorStart: false,
+        errorStartDay: false,
+        errorWhenRepeat: false,
         isLesson: false,
         name : "",
         numberOfLesson: "",
@@ -56,24 +61,33 @@ class CreateEvent extends React.Component {
     }
     
     public createEvent() {
-        // @ts-ignore
-        const {postEvent} = this.props;
-        postEvent({
-            copy: false,
-            day: this.state.startDay,
-            description: this.state.description,
-            end: this.state.end,
-            isLesson: this.state.isLesson,
-            name: this.state.name,
-            numberOfLesson: this.state.numberOfLesson,
-            repeat: this.state.repeat? this.state.whenRepeat: 0,
-            start: this.state.start,
-        });
-        this.closeModal();
+        const errorWhenRepeat = this.state.repeat && this.state.whenRepeat === "";
+        const errorStartDay = this.state.startDay === "";
+        const errorEnd = this.state.end === "";
+        const errorStart = this.state.start === "";
+        const errorName = this.state.name.length < 4;
+        if (!errorName && !errorStart && !errorEnd && !errorStartDay && !errorWhenRepeat) {
+            // @ts-ignore
+            const {postEvent} = this.props;
+            postEvent({
+                copy: false,
+                day: this.state.startDay,
+                description: this.state.description,
+                end: this.state.end,
+                isLesson: this.state.isLesson,
+                name: this.state.name,
+                numberOfLesson: this.state.numberOfLesson,
+                repeat: this.state.repeat ? this.state.whenRepeat : 0,
+                start: this.state.start,
+            });
+            this.closeModal();
+        } else {
+            this.setState({errorName, errorStart, errorEnd, errorStartDay, errorWhenRepeat});
+        }
     }
 
     public render() {
-        const {start, end, name, description, repeat, numberOfLesson ,startDay, whenRepeat, isLesson} = this.state;
+        const {start, end, errorEnd, errorWhenRepeat, errorStartDay, errorName, errorStart, name, description, repeat, numberOfLesson ,startDay, whenRepeat, isLesson} = this.state;
         const repeats = [{
                 name: "Каждый день",
                 value: 1
@@ -117,7 +131,10 @@ class CreateEvent extends React.Component {
                                 <div className={"create-event-input-element"}>
                                     <FormControl fullWidth={true} required={true}>
                                         <InputLabel htmlFor="name">Название события</InputLabel>
-                                        <Input autoFocus={true} value={name} name={"name"} onChange={this.handleChange} id="name"/>
+                                        <Input autoFocus={true} error = {errorName} value={name} name={"name"} onChange={this.handleChange} id="name"/>
+                                        { errorName &&
+                                        <FormHelperText id="component-error-text">Название должно быть не короче 4 символов</FormHelperText>
+                                        }
                                     </FormControl>
                                 </div>
                                 <div className={"create-event-input-element"}>
@@ -126,12 +143,16 @@ class CreateEvent extends React.Component {
                                             InputLabelProps={{
                                                 shrink: true
                                             }}
+                                            error={errorStart}
                                             value={start}
                                             name={"start"}
                                             onChange={this.handleChange}
                                             label={"Время начала"}
                                             type={"time"}
                                         />
+                                        { errorStart &&
+                                        <FormHelperText id="component-error-text">Введите время начала!</FormHelperText>
+                                        }
                                     </FormControl>
 
                                 </div>
@@ -143,11 +164,15 @@ class CreateEvent extends React.Component {
                                             }}
                                             value={end}
                                             name={"end"}
+                                            error={errorEnd}
                                             onChange={this.handleChange}
-                                            label={"Время конца"}
+                                            label={"Время окончания"}
                                             type={"time"}
                                             required={true}
                                         />
+                                        { errorEnd &&
+                                        <FormHelperText id="component-error-text">Введите время окончания!</FormHelperText>
+                                        }
                                     </FormControl>
                                 </div>
                                 <div className={"create-event-input-element"}>
@@ -213,11 +238,15 @@ class CreateEvent extends React.Component {
                                             }}
                                             type={"date"}
                                             name={"startDay"}
+                                            error={errorStartDay}
                                             value={startDay}
                                             onChange={this.handleChange}
                                             label={"День начала"}
                                             required={true}
                                             />
+                                            { errorStartDay &&
+                                            <FormHelperText id="component-error-text">Введите начальный день!</FormHelperText>
+                                            }
                                         </FormControl>
                                     </div>
                                 {repeat &&
@@ -229,6 +258,7 @@ class CreateEvent extends React.Component {
                                             onChange={this.handleChange}
                                             name={"whenRepeat"}
                                             label={"Частота события"}
+                                            error={errorWhenRepeat}
                                         >
                                             {
                                                 repeats.map(option => (
@@ -238,6 +268,9 @@ class CreateEvent extends React.Component {
                                                 ))
                                             }
                                         </TextField>
+                                        { errorWhenRepeat &&
+                                        <FormHelperText id="component-error-text">Выберите частоту повторения события!</FormHelperText>
+                                        }
                                     </FormControl>
                                 </div>
                                 }
