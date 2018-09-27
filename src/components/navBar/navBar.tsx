@@ -26,7 +26,6 @@ class NavBar extends React.Component {
         super(props);
         this.handleClick = this.handleClick.bind(this);
         this.handleLog = this.handleLog.bind(this);
-        (console as any).log(this.props);
     }
 
     public handleClick(path: string){

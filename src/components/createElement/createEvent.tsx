@@ -117,7 +117,7 @@ class CreateEvent extends React.Component {
                                 <div className={"create-event-input-element"}>
                                     <FormControl fullWidth={true} required={true}>
                                         <InputLabel htmlFor="name">Название события</InputLabel>
-                                        <Input value={name} name={"name"} onChange={this.handleChange} id="name"/>
+                                        <Input autoFocus={true} value={name} name={"name"} onChange={this.handleChange} id="name"/>
                                     </FormControl>
                                 </div>
                                 <div className={"create-event-input-element"}>

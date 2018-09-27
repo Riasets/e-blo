@@ -1,5 +1,4 @@
 import FormControl from '@material-ui/core/FormControl';
-import Grid from '@material-ui/core/Grid';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import Paper from '@material-ui/core/Paper';
@@ -58,44 +57,35 @@ class Login extends React.Component {
             return (<Redirect to="/schedule"/>)
         } else {
             return (
-                <Grid container={true} className={"login-form"} alignItems={"center"} justify={"center"}>
-                    <Grid item={true} className={"login-paper"} lg={4}>
-                        <Paper>
-                            <Grid container={true} direction={"column"} justify={"center"} alignItems={"center"}>
-                                <Grid item={true} style={{margin: 15}}>
-                                    <h3>Вход</h3>
-                                </Grid>
-                                <Grid item={true} className={"login-paper__input-field"} style={{margin: 15}}>
-                                    <FormControl fullWidth={true} required={true}>
-                                        <InputLabel htmlFor="email-simple">Э-мейл</InputLabel>
-                                        <Input value={email} name={"email"} onChange={this.handleChange}
-                                               id="email-simple" fullWidth={true}/>
-                                    </FormControl>
-                                </Grid>
-                                <Grid item={true} className={"login-paper__input-field"} style={{margin: 15}}>
-                                    <FormControl fullWidth={true} required={true}>
-                                        <InputLabel htmlFor="password-simple">Пароль</InputLabel>
-                                        <Input value={password} name={"password"} onChange={this.handleChange}
-                                               id="password-simple"/>
-                                    </FormControl>
-                                </Grid>
-                                { error &&
-                                (<Grid item={true} style={{margin: 5}}>
-                                    <p>{error}</p>
-                                </Grid>)
-                                }
-                                <Grid item={true} style={{margin: 15}}>
-                                    <button onClick={this.handleSubmit}>
-                                        Войти
-                                    </button>
-                                </Grid>
-                                <Grid item={true} style={{margin: 15}}>
-                                    <Link to='/register'>Зарегистрироваться</Link>
-                                </Grid>
-                            </Grid>
-                        </Paper>
-                    </Grid>
-                </Grid>
+                <div className={"login-container"}>
+                    <Paper className={"login-paper"}>
+                        <h3>Вход</h3>
+                        <div className={"login-input"}>
+                            <FormControl fullWidth={true} required={true}>
+                                <InputLabel htmlFor="email-simple">Э-мейл</InputLabel>
+                                <Input autoFocus={true} value={email} name={"email"} onChange={this.handleChange}
+                                                       id="email-simple" fullWidth={true}/>
+                            </FormControl>
+                        </div>
+                        <div className={"login-input"}>
+                            <FormControl fullWidth={true} required={true}>
+                                <InputLabel htmlFor="password-simple">Пароль</InputLabel>
+                                <Input value={password} name={"password"} onChange={this.handleChange}
+                                                       id="password-simple"/>
+                            </FormControl>
+                        </div>
+
+                        { error &&
+                        (
+                            <p>{error}</p>
+                       )
+                        }
+                        <a className={"login-button"} onClick={this.handleSubmit}>
+                            Войти
+                        </a>
+                        <Link className={"login-register-link"} to='/register'>Зарегистрироваться</Link>
+                    </Paper>
+                </div>
             );
         }
     }

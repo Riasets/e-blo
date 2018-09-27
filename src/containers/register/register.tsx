@@ -1,5 +1,5 @@
+import {FormHelperText} from "@material-ui/core";
 import FormControl from "@material-ui/core/FormControl";
-import Grid from "@material-ui/core/Grid";
 import Input from "@material-ui/core/Input";
 import InputLabel from "@material-ui/core/InputLabel";
 import Paper from "@material-ui/core/Paper";
@@ -14,14 +14,18 @@ import "./register.css";
 
 import {encodeBody} from "../../utils/encode";
 
+
 class Register extends React.Component {
 
     constructor(props: any) {
         super(props);
         this.state = {
             email: '',
+            noEqualPassword: false,
             password: '',
             passwordRepeat: '',
+            shortEmail: false,
+            shortPassword: false,
         };
         this.handleChange =this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -37,11 +41,18 @@ class Register extends React.Component {
     public handleSubmit(e: MouseEvent<HTMLButtonElement>){
         e.preventDefault();
         // @ts-ignore
-        const {email, password} = this.state;
-        // @ts-ignore
-        const { register } = this.props;
-        register(email, password);
-        this.setState({email: '', password: '', passwordRepeat: ''});
+        const {email, password, passwordRepeat} = this.state;
+        const noEqualPassword = password !== passwordRepeat;
+        const shortPassword = (password.length < 5);
+        const shortEmail = email.length < 5;
+        if (!noEqualPassword && !shortPassword) {
+            // @ts-ignore
+            const {register} = this.props;
+            register(email, password);
+            this.setState({email: '', password: '', passwordRepeat: ''});
+        } else {
+            this.setState({noEqualPassword, shortPassword, shortEmail});
+        }
     }
 
     public componentWillUnmount(){
@@ -53,7 +64,7 @@ class Register extends React.Component {
     public render() {
 
         // @ts-ignore
-        const {email, password, passwordRepeat} = this.state;
+        const {noEqualPassword,email, password, passwordRepeat, shortPassword, shortEmail} = this.state;
         // @ts-ignore
         const {error} = this.props.RegisterInfo;
         // @ts-ignore
@@ -61,48 +72,49 @@ class Register extends React.Component {
             return (<Redirect to="/login"/>)
         } else {
             return (
-                <Grid container={true} className={"register-form"} alignItems={"center"} justify={"center"}>
-                    <Grid item={true} className={"register-paper"} lg={4}>
-                        <Paper>
-                            <Grid container={true} direction={"column"} justify={"center"} alignItems={"center"}>
-                                <Grid item={true} style={{margin: 15}}>
-                                    <h3>Регистрация</h3>
-                                </Grid>
-                                <Grid item={true} className={"register-paper__input-field"} style={{margin: 15}}>
-                                    <FormControl fullWidth={true} required={true}>
-                                        <InputLabel htmlFor="email-simple">Э-мейл</InputLabel>
-                                        <Input value={email} name={"email"} onChange={this.handleChange} id="email-simple" fullWidth={true}/>
-                                    </FormControl>
-                                </Grid>
-                                <Grid item={true} className={"register-paper__input-field"} style={{margin: 15}}>
-                                    <FormControl fullWidth={true} required={true}>
-                                        <InputLabel htmlFor="password-simple">Пароль</InputLabel>
-                                        <Input value={password} name={"password"} onChange={this.handleChange} id="password-simple"/>
-                                    </FormControl>
-                                </Grid>
-                                <Grid item={true} className={"register-paper__input-field"} style={{margin: 15}}>
-                                    <FormControl fullWidth={true} required={true}>
-                                        <InputLabel htmlFor="password-repeat-simple">Повторите пароль</InputLabel>
-                                        <Input value={passwordRepeat} name={"passwordRepeat"} onChange={this.handleChange} id="password-repeat-simple"/>
-                                    </FormControl>
-                                </Grid>
+                <div className={"register-container"}>
+                        <Paper className={'register-paper'}>
+                            <h3>Регистрация</h3>
+                            <div className="register-input">
+                                <FormControl fullWidth={true} required={true}>
+                                    <InputLabel htmlFor="email-simple">Э-мейл</InputLabel>
+                                    <Input autoFocus={true} error={shortEmail} value={email} name={"email"} onChange={this.handleChange} id="email-simple" fullWidth={true}/>
+                                    { shortEmail&&
+                                    <FormHelperText id="component-error-text">Наверное это не э-мейл...</FormHelperText>
+                                    }
+                                </FormControl>
+                            </div>
+                            <div className="register-input">
+                                <FormControl fullWidth={true} required={true}>
+                                    <InputLabel htmlFor="password-simple">Пароль</InputLabel>
+                                    <Input type="password" error={shortPassword} value={password} name={"password"} onChange={this.handleChange} id="password-simple"/>
+                                    { shortPassword &&
+                                    <FormHelperText id="component-error-text">Пароль слишком короткий</FormHelperText>
+                                    }
+                                </FormControl>
+                            </div>
+                            <div className="register-input">
+                                <FormControl fullWidth={true} required={true}>
+                                    <InputLabel htmlFor="password-repeat-simple">Повторите пароль</InputLabel>
+                                    <Input type="password" error={noEqualPassword} value={passwordRepeat} name={"passwordRepeat"} onChange={this.handleChange} id="password-repeat-simple"/>
+                                    { noEqualPassword &&
+                                        <FormHelperText id="component-error-text">Пароли не совпадают</FormHelperText>
+                                    }
+                                </FormControl>
+                            </div>
+
                                 { error &&
-                                (<Grid item={true} style={{margin: 5}}>
-                                        <p>{error}</p>
-                                    </Grid>)
+                                (
+                                    <p>{error}</p>
+                                )
                                 }
-                                <Grid item={true} style={{margin: 15}}>
-                                    <button onClick={this.handleSubmit}>
-                                        Зарегистрироваться
-                                    </button>
-                                </Grid>
-                                <Grid item={true} style={{margin: 15}}>
-                                    <Link to='/login'>Вход</Link>
-                                </Grid>
-                            </Grid>
+                                <a className={"register-button"} onClick={this.handleSubmit}>
+                                    Зарегистрироваться
+                                </a>
+
+                            <Link className={"register-login-link"} to='/login'>У меня уже есть аккаунт</Link>
                         </Paper>
-                    </Grid>
-                </Grid>
+                </div>
             );
         }
     }
