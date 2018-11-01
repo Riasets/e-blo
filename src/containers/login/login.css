@@ -53,3 +53,8 @@
     display: flex;
     justify-content: center;
 }
+
+.login-label{
+    font-family: 'Rubik', sans-serif;
+
+}

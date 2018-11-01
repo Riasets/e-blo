@@ -1,16 +1,18 @@
 import * as React from 'react';
 
-import {numLessonToString, timeToString} from "../../../../utils/dayInfoParse";
+import { numLessonToString, timeToString } from "../../../../utils/dayInfoParse";
 import './DayEvent.css';
 
 const DayEvent = (props: any) => {
 
-    return (
+  return (
         <div className={'day-event-container'}>
             <h2>{props.Event.name}</h2>
-            <p>{numLessonToString(props.Event.numberOfLesson)} {props.Event.isLesson? ",": ""} {timeToString(props.Event.start)} - {timeToString(props.Event.end)}</p>
+            <p>{numLessonToString(props.Event.numberOfLesson)}
+            {props.Event.isLesson ? "," : ""}
+            {timeToString(props.Event.start)} - {timeToString(props.Event.end)}</p>
         </div>
-    );
+  );
 };
 
 export default DayEvent;

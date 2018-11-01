@@ -1,10 +1,21 @@
 {
-  "extends": ["tslint:recommended", "tslint-react", "tslint-config-prettier"],
+  "extends": ["tslint:recommended", "tslint-react", "tslint-config-prettier", "tslint-config-airbnb"],
   "linterOptions": {
     "exclude": [
       "config/**/*.js",
       "node_modules/**/*.ts",
-      "coverage/lcov-report/*.js"
+      "coverage/lcov-report/*.js",
+      "src/registerServiceWorker.ts"
     ]
+  },
+  "rules": {
+    "quotemark": ["double", "single"],
+    "object-literal-sort-keys": false,
+    "variable-name": false,
+    "prefer-template": false,
+    "import-name": false,
+    "no-increment-decrement": false,
+    "prefer-readonly": false,
+    "object-literal-key-quotes": false
   }
 }
