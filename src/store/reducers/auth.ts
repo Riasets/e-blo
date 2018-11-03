@@ -11,12 +11,12 @@ const initialState = {
   schedule: null,
   status: null,
   token: null,
+  refreshToken: null,
   tokenIsRefreshing: false,
 };
 
 // @ts-ignore
 const Auth = (state:object = initialState, action) => {
-    // @ts-ignore
   switch (action.type) {
     case ActionType.LOGIN_SUCCESS: {
       return {
@@ -29,6 +29,7 @@ const Auth = (state:object = initialState, action) => {
         logged: true,
         name: action.payload.name,
         schedule: action.payload.schedule,
+        refreshToken: action.payload.refreshToken,
         token: action.payload.token,
       };
     }
@@ -96,6 +97,7 @@ const Auth = (state:object = initialState, action) => {
       return {
         ...state,
         expires_in: action.payload.expires_in,
+        refreshToken: action.payload.refreshToken,
         token: action.payload.token,
         tokenIsRefreshing: false,
       };
@@ -109,5 +111,8 @@ const Auth = (state:object = initialState, action) => {
 export const getToken = (state: any) => ({
   token: state.Auth.token,
   expires_in: state.Auth.expires_in});
+export const getRefreshToken = (state: any) => ({
+  token: state.Auth.refreshToken,
+});
 export const getStatusRefreshingToken = (state: any) => (state.Auth.tokenIsRefreshing);
 export default Auth;

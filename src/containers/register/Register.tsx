@@ -85,6 +85,8 @@ class Register extends React.Component {
     = this.state;
         // @ts-ignore
     const { error } = this.props.RegisterInfo;
+    // @ts-ignore
+    const { classes } = this.props;
         // @ts-ignore
     if (this.props.RegisterInfo.status === "registered") {
       return (<Redirect to="/login"/>);
@@ -95,12 +97,18 @@ class Register extends React.Component {
                             <h3>Регистрация</h3>
                             <div className="register-input">
                                 <FormControl fullWidth={true} required={true}>
-                                    <InputLabel htmlFor="email-simple">Э-мейл</InputLabel>
+                                    <InputLabel htmlFor="email-simple"
+                                                classes={{ root: classes.labelStyle }}>
+                                      Э-мейл
+                                    </InputLabel>
                                     <Input autoFocus={true}
                                            error={shortEmail}
                                            value={email} name={"email"}
                                            onChange={this.handleChange}
                                            id="email-simple"
+                                           classes=
+                                             {{root: classes.formControl,
+                                               underline: classes.underline}}
                                            fullWidth={true}/>
                                     { shortEmail &&
                                     <FormHelperText id="component-error-text">
@@ -111,13 +119,19 @@ class Register extends React.Component {
                             </div>
                             <div className="register-input">
                                 <FormControl fullWidth={true} required={true}>
-                                    <InputLabel htmlFor="password-simple">Пароль</InputLabel>
+                                    <InputLabel htmlFor="password-simple"
+                                                classes={{ root: classes.labelStyle }}>
+                                      Пароль
+                                    </InputLabel>
                                     <Input
                                       type="password"
                                       error={shortPassword}
                                       value={password}
                                       name={"password"}
                                       onChange={this.handleChange}
+                                      classes=
+                                        {{root: classes.formControl,
+                                          underline: classes.underline}}
                                       id="password-simple"/>
                                     { shortPassword &&
                                     <FormHelperText id="component-error-text">
@@ -128,7 +142,8 @@ class Register extends React.Component {
                             </div>
                             <div className="register-input">
                                 <FormControl fullWidth={true} required={true}>
-                                    <InputLabel htmlFor="password-repeat-simple">
+                                    <InputLabel htmlFor="password-repeat-simple"
+                                                classes={{ root: classes.labelStyle }}>
                                       Повторите пароль
                                     </InputLabel>
                                     <Input
@@ -137,6 +152,9 @@ class Register extends React.Component {
                                       value={passwordRepeat}
                                       name={"passwordRepeat"}
                                       onChange={this.handleChange}
+                                      classes=
+                                        {{root: classes.formControl,
+                                          underline: classes.underline}}
                                       id="password-repeat-simple"/>
                                     { noEqualPassword &&
                                         <FormHelperText id="component-error-text">
