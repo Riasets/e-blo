@@ -17,7 +17,7 @@ import { Dispatch, compose } from 'redux';
 import { Actions } from '../../store/actions/actions';
 import { encodeBody } from '../../utils/encode';
 import { timeStringToNum } from "../../utils/dateParse";
-import './createEvent.css';
+import './createEvent.scss';
 
 class CreateEvent extends React.Component {
   public state = {
@@ -153,7 +153,8 @@ class CreateEvent extends React.Component {
                                 <div className="create-event-input-element">
                                     <FormControl fullWidth={true} required={true}>
                                         <InputLabel htmlFor="name"
-                                                    classes={{ root: classes.labelStyle }}
+                                                    classes={{ root: classes.labelStyle,
+                                                      shrink: classes.shrink}}
                                         >Название события</InputLabel>
                                         <Input autoFocus={true}
                                                error = {errorName}

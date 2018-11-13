@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import { numLessonToString, timeToString } from "../../../../utils/dayInfoParse";
-import './DayEvent.css';
+import './DayEvent.scss';
 
 const DayEvent = (props: any) => {
 

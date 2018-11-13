@@ -2,7 +2,7 @@ import * as React from 'react';
 import { connect } from "react-redux";
 
 import Day from "./Day/Day";
-import './timeline.css';
+import './timeline.scss';
 
 import 'react-perfect-scrollbar/dist/css/styles.css';
 

@@ -3,7 +3,7 @@ import * as React from 'react';
 import Header from './containers/header/Header';
 import Main from './containers/main/Main';
 
-import './App.css';
+import './App.scss';
 
 import 'normalize.css';
 

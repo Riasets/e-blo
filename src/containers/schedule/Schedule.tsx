@@ -8,7 +8,7 @@ import { Actions } from "../../store/actions/actions";
 import CreateEvent from "../../components/createElement/CreateEvent";
 import Timeline from "../../components/Timeline/Timeline";
 
-import './schedule.css';
+import './schedule.scss';
 
 class Schedule extends React.Component {
 

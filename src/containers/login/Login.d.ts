@@ -14,6 +14,7 @@ interface IStyleClasses{
   labelStyle?: any;
   underline?: any;
   focused?: any;
+  shrink?: any;
 }
 
 interface IAuthInfo{

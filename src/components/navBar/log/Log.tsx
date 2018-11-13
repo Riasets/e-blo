@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import './log.css';
+import './log.scss';
 
 const Log = (props: any) => {
   const Icon = props.Icon;

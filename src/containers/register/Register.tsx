@@ -10,7 +10,7 @@ import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { compose, Dispatch } from "redux";
 import { Actions } from "../../store/actions/actions";
-import "./register.css";
+import "./register.scss";
 import InputFieldStyle from '../../styles/InputFieldStyle';
 
 import { encodeBody } from "../../utils/encode";
@@ -80,7 +80,8 @@ class Register extends React.Component {
                             <div className="register-input">
                                 <FormControl fullWidth={true} required={true}>
                                     <InputLabel htmlFor="email-simple"
-                                                classes={{ root: classes.labelStyle }}>
+                                                classes={{ root: classes.labelStyle,
+                                                  shrink: classes.shrink}}>
                                       Э-мейл
                                     </InputLabel>
                                     <Input autoFocus={true}
@@ -102,7 +103,8 @@ class Register extends React.Component {
                             <div className="register-input">
                                 <FormControl fullWidth={true} required={true}>
                                     <InputLabel htmlFor="password-simple"
-                                                classes={{ root: classes.labelStyle }}>
+                                                classes={{ root: classes.labelStyle,
+                                                  shrink: classes.shrink}}>
                                       Пароль
                                     </InputLabel>
                                     <Input
@@ -125,7 +127,8 @@ class Register extends React.Component {
                             <div className="register-input">
                                 <FormControl fullWidth={true} required={true}>
                                     <InputLabel htmlFor="password-repeat-simple"
-                                                classes={{ root: classes.labelStyle }}>
+                                                classes={{ root: classes.labelStyle,
+                                                  shrink: classes.shrink}}>
                                       Повторите пароль
                                     </InputLabel>
                                     <Input

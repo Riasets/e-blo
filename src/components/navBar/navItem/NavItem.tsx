@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import './navItem.css';
+import './navItem.scss';
 
 const NavItem = (props: any) => {
   const handleClick = () => {

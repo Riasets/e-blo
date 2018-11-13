@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import './DayHeader.css';
+import './DayHeader.scss';
 
 const DayHeader = (props: any) => {
   const exep = [2, 3, 4];

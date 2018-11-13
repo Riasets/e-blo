@@ -12,7 +12,7 @@ import InputFieldStyle from '../../styles/InputFieldStyle';
 import { Actions } from '../../store/actions/actions';
 import { ILoginProps } from './Login.d';
 
-import './login.css';
+import './login.scss';
 
 class Login extends React.Component<ILoginProps> {
 
@@ -63,7 +63,8 @@ class Login extends React.Component<ILoginProps> {
                             <FormControl fullWidth={true}>
                                 <InputLabel
                                     htmlFor="email-simple"
-                                    classes={{ root: classes.labelStyle }}
+                                    classes={{ root: classes.labelStyle,
+                                      shrink: classes.shrink}}
                                 >
                                     Э-мейл
                                 </InputLabel>
@@ -75,8 +76,8 @@ class Login extends React.Component<ILoginProps> {
                                     id="email-simple"
                                     fullWidth={true}
                                     classes=
-                                      {{root: 'input-field',
-                                        underline: 'underline',
+                                      {{root: classes.formControl,
+                                        underline: classes.underline,
                                       }}
                                 />
                             </FormControl>
@@ -84,7 +85,8 @@ class Login extends React.Component<ILoginProps> {
                         <div className={'login-input'}>
                             <FormControl fullWidth={true}>
                                 <InputLabel
-                                            classes={{ root: classes.labelStyle }}
+                                            classes={{ root: classes.labelStyle,
+                                              shrink: classes.shrink}}
                                             htmlFor="password-simple">
                                     Пароль
                                 </InputLabel>

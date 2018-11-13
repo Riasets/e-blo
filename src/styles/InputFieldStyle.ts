@@ -4,6 +4,12 @@ const InputFieldStyle = {
     fontSize: '1.6rem',
     fontWeight: 500,
     height: '2.4rem',
+    '&$underline:before':{
+      borderBottom: '.2rem solid #424242',
+    },
+    '&$underline:after': {
+      borderBottom: '.2rem solid #26a69a',
+    },
   },
   labelStyle: {
     color: '#616161',
@@ -11,13 +17,12 @@ const InputFieldStyle = {
     fontSize: '1.6rem',
     fontWeight: 400,
     lineHeight: 0,
+    '&$shrink': {
+      color: '#26a69a',
+    },
   },
-  underline: {
-    borderBottom: '.2rem solid #424242',
-  },
-  focused: {
-    borderBottom: '.2rem solid #26a69a',
-  },
+  underline: {},
+  shrink: {},
 };
 
 export default InputFieldStyle;

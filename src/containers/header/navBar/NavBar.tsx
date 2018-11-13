@@ -13,7 +13,7 @@ import PersonIcon from '@material-ui/icons/Person';
 import SearchIcon from '@material-ui/icons/Search';
 import SettingsIcon from '@material-ui/icons/Settings';
 
-import './navBar.css';
+import './navBar.scss';
 
 import { Actions } from "../../../store/actions/actions";
 

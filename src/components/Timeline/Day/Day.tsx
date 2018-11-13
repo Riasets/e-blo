@@ -3,7 +3,7 @@ import * as React from 'react';
 import DayEvent from './DayEvent/DayEvent';
 import DayHeader from './DayHeader/DayHeader';
 
-import './Day.css';
+import './Day.scss';
 
 import { getDate, monthToRussian, weekDayToRussian } from "../../../utils/dateParse";
 import {maxTime,
