@@ -7,30 +7,12 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
 import { compose, Dispatch } from 'redux';
+import InputFieldStyle from '../../styles/InputFieldStyle';
 
 import { Actions } from '../../store/actions/actions';
 import { ILoginProps } from './Login.d';
 
 import './login.css';
-
-const styles = {
-  formControl: {
-    color: '#212121',
-    fontSize: '1.6rem',
-    fontWeight: 500,
-    height: '2.4rem',
-  },
-  labelStyle: {
-    color: '#616161',
-    fontFamily: "'Rubik', sans-serif",
-    fontSize: '1.6rem',
-    fontWeight: 400,
-    lineHeight: 0,
-  },
-  underline: {
-    borderBottom: '.2rem solid #424242',
-  },
-};
 
 class Login extends React.Component<ILoginProps> {
 
@@ -93,8 +75,9 @@ class Login extends React.Component<ILoginProps> {
                                     id="email-simple"
                                     fullWidth={true}
                                     classes=
-                                      {{root: classes.formControl,
-                                        underline: classes.underline}}
+                                      {{root: 'input-field',
+                                        underline: 'underline',
+                                      }}
                                 />
                             </FormControl>
                         </div>
@@ -157,5 +140,5 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
 
 export default compose(
     connect(mapStateToProps, mapDispatchToProps),
-    withStyles(styles),
+    withStyles(InputFieldStyle),
 )(Login);

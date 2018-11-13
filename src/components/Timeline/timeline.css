@@ -13,5 +13,5 @@
 
 .timeline-days-container{
 
-    height: 750px;
+    height: calc(100vh - 9.5rem);
 }

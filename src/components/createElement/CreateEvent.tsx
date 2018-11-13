@@ -9,9 +9,11 @@ import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import Paper from '@material-ui/core/Paper';
 import * as React from 'react';
+import withStyles from '@material-ui/core/styles/withStyles';
 
+import InputFieldStyle from '../../styles/InputFieldStyle';
 import { connect } from 'react-redux';
-import { Dispatch } from 'redux';
+import { Dispatch, compose } from 'redux';
 import { Actions } from '../../store/actions/actions';
 import { encodeBody } from '../../utils/encode';
 import { timeStringToNum } from "../../utils/dateParse";
@@ -92,6 +94,8 @@ class CreateEvent extends React.Component {
   }
 
   public render() {
+      // @ts-ignore
+    const { classes } = this.props;
     const { start,
       end,
       errorEnd,
@@ -148,13 +152,19 @@ class CreateEvent extends React.Component {
                             <div className="create-event-input-field-flex-box-column">
                                 <div className="create-event-input-element">
                                     <FormControl fullWidth={true} required={true}>
-                                        <InputLabel htmlFor="name">Название события</InputLabel>
+                                        <InputLabel htmlFor="name"
+                                                    classes={{ root: classes.labelStyle }}
+                                        >Название события</InputLabel>
                                         <Input autoFocus={true}
                                                error = {errorName}
                                                value={name}
                                                name="name"
                                                onChange={this.handleChange}
-                                               id="name"/>
+                                               id="name"
+                                               classes=
+                                                   {{root: classes.formControl,
+                                                     underline: classes.underline}}
+                                        />
                                         { errorName &&
                                         <FormHelperText id="component-error-text">
                                           Название должно быть не короче 4 символов
@@ -328,4 +338,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
   },
 });
 
-export default connect(null, mapDispatchToProps)(CreateEvent);
+export default compose(
+    withStyles(InputFieldStyle),
+    connect(null, mapDispatchToProps),
+)(CreateEvent);

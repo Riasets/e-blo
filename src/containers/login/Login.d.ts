@@ -10,9 +10,10 @@ export interface ILoginProps{
 }
 
 interface IStyleClasses{
-  formControl: any;
-  labelStyle: any;
-  underline: any;
+  formControl?: any;
+  labelStyle?: any;
+  underline?: any;
+  focused?: any;
 }
 
 interface IAuthInfo{
