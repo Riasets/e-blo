@@ -14,6 +14,7 @@ import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import { Actions } from '../../store/actions/actions';
 import { encodeBody } from '../../utils/encode';
+import { timeStringToNum } from "../../utils/dateParse";
 import './createEvent.css';
 
 class CreateEvent extends React.Component {
@@ -65,8 +66,10 @@ class CreateEvent extends React.Component {
   public createEvent() {
     const errorWhenRepeat = this.state.repeat && this.state.whenRepeat === '';
     const errorStartDay = this.state.startDay === '';
-    const errorEnd = this.state.end === '';
-    const errorStart = this.state.start === '';
+    const errorEnd = this.state.end === '' ||
+        timeStringToNum(this.state.start) >= timeStringToNum(this.state.end);
+    const errorStart = this.state.start === '' ||
+        timeStringToNum(this.state.start) >= timeStringToNum(this.state.end);
     const errorName = this.state.name.length < 4;
     if (!errorName && !errorStart && !errorEnd && !errorStartDay && !errorWhenRepeat) {
             // @ts-ignore
@@ -171,6 +174,7 @@ class CreateEvent extends React.Component {
                                             onChange={this.handleChange}
                                             label="Время начала"
                                             type="time"
+                                            required={true}
                                         />
                                         { errorStart &&
                                         <FormHelperText id="component-error-text">
@@ -318,10 +322,8 @@ class CreateEvent extends React.Component {
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
   postEvent: (body: any) => {
-    const start = body.start.split(':');
-    body.start = Number(start[0]) * 60  + Number(start[1]);
-    const end = body.end.split(':');
-    body.end = Number(end[0]) * 60 + Number(end[1]);
+    body.start = timeStringToNum(body.start);
+    body.end = timeStringToNum(body.end);
     dispatch(Actions.postEvent(encodeBody(body)));
   },
 });

@@ -85,7 +85,8 @@ function matStateToProps(state: any) {
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
   logout: () => {
-    dispatch(Actions.logout());
+    dispatch(Actions.logoutAuth());
+    dispatch(Actions.logoutSchedule());
   },
 });
 

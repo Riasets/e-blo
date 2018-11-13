@@ -40,7 +40,8 @@ function* callRefreshToken() {
             .then(res => res.json())
             .catch(err => err)));
     if (data.error) {
-      yield put(Actions.logout());
+      yield put(Actions.logoutAuth());
+      yield put(Actions.logoutSchedule());
     } else {
       yield put(Actions.setNewToken({ ...data, expires_in: Date.now() + 35000 }));
     }

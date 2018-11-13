@@ -80,3 +80,9 @@ export function getDate(date: Date) {
   const dateArray = dateString.split(" ");
   return String(Number(dateArray[1]));
 }
+
+// '1:11' => 71
+export function timeStringToNum(time: string) {
+  const newTime = time.split(':');
+  return Number(newTime[0]) * 60  + Number(newTime[1]);
+}

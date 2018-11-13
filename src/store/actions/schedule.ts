@@ -8,6 +8,7 @@ export const ScheduleActions = {
   POST_EVENT_LOAD: 'POST_EVENT_LOAD',
   POST_EVENT_SUCCESS: 'POST_EVENT_SUCCESS',
   REFRESH_STATUSES_SCHEDULE: 'REFRESH_STATUSES_SCHEDULE',
+  LOGOUT_SCHEDULE: 'LOGOUT_SCHEDULE',
 };
 
 const getScheduleActions = () => ({
@@ -21,6 +22,7 @@ const getScheduleActions = () => ({
   postEventLoad: () => ({ type: ScheduleActions.POST_EVENT_LOAD }),
   postEventSuccess: () => ({ type: ScheduleActions.POST_EVENT_SUCCESS }),
   refreshStatusesSchedule: () => ({ type: ScheduleActions.REFRESH_STATUSES_SCHEDULE }),
+  logoutSchedule: () => ({ type: ScheduleActions.LOGOUT_SCHEDULE }),
 });
 
 export default getScheduleActions();

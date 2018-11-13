@@ -82,7 +82,7 @@ const Auth = (state:object = initialState, action) => {
         status: initialState.status,
       };
     }
-    case ActionType.LOGOUT: {
+    case ActionType.LOGOUT_AUTH: {
       return{
         ...initialState,
       };

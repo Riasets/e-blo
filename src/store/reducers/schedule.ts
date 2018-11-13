@@ -50,6 +50,11 @@ const Schedule = (state:object = initialState, action: any) => {
         isLoading: false,
       };
     }
+    case ActionType.LOGOUT_SCHEDULE: {
+      return {
+        ...initialState,
+      };
+    }
     default: {
       return state;
     }
