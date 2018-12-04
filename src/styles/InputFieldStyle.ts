@@ -4,6 +4,7 @@ const InputFieldStyle = {
     fontSize: '1.6rem',
     fontWeight: 500,
     height: '2.4rem',
+    fontFamily: "'Rubik', sans-serif",
     '&$underline:before':{
       borderBottom: '.2rem solid #424242',
     },

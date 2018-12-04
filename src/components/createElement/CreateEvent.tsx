@@ -3,17 +3,18 @@ import {FormControlLabel,
   MenuItem,
   Modal,
   Switch,
-  TextField} from '@material-ui/core';
+  TextField } from '@material-ui/core';
 import FormControl from '@material-ui/core/FormControl';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import Paper from '@material-ui/core/Paper';
 import * as React from 'react';
 import withStyles from '@material-ui/core/styles/withStyles';
+import MultilineField from './MultilineField';
 
 import InputFieldStyle from '../../styles/InputFieldStyle';
 import { connect } from 'react-redux';
-import { Dispatch, compose } from 'redux';
+import { Dispatch } from 'redux';
 import { Actions } from '../../store/actions/actions';
 import { encodeBody } from '../../utils/encode';
 import { timeStringToNum } from "../../utils/dateParse";
@@ -96,13 +97,10 @@ class CreateEvent extends React.Component {
   public render() {
       // @ts-ignore
     const { classes } = this.props;
-    const { start,
-      end,
-      errorEnd,
+    const {
       errorWhenRepeat,
       errorStartDay,
       errorName,
-      errorStart,
       name,
       description,
       repeat,
@@ -147,7 +145,12 @@ class CreateEvent extends React.Component {
                     className="create-event-modal"
                 >
                     <Paper className="create-event-modal-box">
-                        <h3>Создание события в расписании</h3>
+                        <div className="create-event-modal-box-header">
+                          <h3>Создание события в расписании</h3>
+                          <img onClick={this.closeModal}
+                               src={require("../../img/close.png")}
+                               alt="close"/>
+                        </div>
                         <div  className={'create-event-input-field-flex-box-row'}>
                             <div className="create-event-input-field-flex-box-column">
                                 <div className="create-event-input-element">
@@ -173,49 +176,7 @@ class CreateEvent extends React.Component {
                                         }
                                     </FormControl>
                                 </div>
-                                <div className="create-event-input-element">
-                                    <FormControl fullWidth={true} required={true}>
-                                        <TextField
-                                            InputLabelProps={{
-                                              shrink: true,
-                                            }}
-                                            error={errorStart}
-                                            value={start}
-                                            name="start"
-                                            onChange={this.handleChange}
-                                            label="Время начала"
-                                            type="time"
-                                            required={true}
-                                        />
-                                        { errorStart &&
-                                        <FormHelperText id="component-error-text">
-                                          Введите время начала!
-                                        </FormHelperText>
-                                        }
-                                    </FormControl>
 
-                                </div>
-                                <div className="create-event-input-element">
-                                    <FormControl fullWidth={true} required={true}>
-                                        <TextField
-                                            InputLabelProps={{
-                                              shrink: true,
-                                            }}
-                                            value={end}
-                                            name="end"
-                                            error={errorEnd}
-                                            onChange={this.handleChange}
-                                            label="Время окончания"
-                                            type="time"
-                                            required={true}
-                                        />
-                                        { errorEnd &&
-                                        <FormHelperText id="component-error-text">
-                                          Введите время окончания!
-                                        </FormHelperText>
-                                        }
-                                    </FormControl>
-                                </div>
                                 <div className="create-event-input-element">
                                     <FormControlLabel
                                         control={
@@ -244,18 +205,7 @@ class CreateEvent extends React.Component {
                                         </FormControl>
                                     </div>
                                 }
-                                <div className="create-event-input-element">
-                                    <FormControl fullWidth={true}>
-                                        <TextField
-                                        value={description}
-                                        name={'description'}
-                                        onChange={this.handleChange}
-                                        multiline = {true}
-                                        label="Описание"
-                                        rows={4}
-                                        />
-                                    </FormControl>
-                                </div>
+
                             </div>
                             <div className="create-event-input-field-flex-box-column">
                                 <div className="create-event-input-element">
@@ -323,6 +273,20 @@ class CreateEvent extends React.Component {
 
                             </div>
                         </div>
+                        <div className="create-event-input-field-flex-box-column">
+                          Here is time
+                          <div className="create-event-input-field-describe">
+                            <h5>Описание</h5>
+                            <MultilineField
+                              value={description}
+                              name={'description'}
+                              onChange={this.handleChange}
+                              placeholder={this.state.isLesson ?
+                                'Например, имя препода, аудитория, корпус' :
+                                'Например, что с собой взять, с кем встреча'}
+                            />
+                          </div>
+                        </div>
                         <a onClick={this.createEvent}><span>+</span>Добавить</a>
                     </Paper>
                 </Modal>
@@ -339,7 +303,5 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
   },
 });
 
-export default compose(
-    withStyles(InputFieldStyle),
-    connect(null, mapDispatchToProps),
-)(CreateEvent);
+export default withStyles(InputFieldStyle)(connect(null, mapDispatchToProps)(CreateEvent));
+// TODO Why compose throw error {} is not assginable to never

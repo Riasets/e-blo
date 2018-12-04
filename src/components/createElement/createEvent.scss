@@ -60,22 +60,41 @@
     padding: 0 11px 0 0;
 }
 
-.create-event-modal-box>h3{
-    font-size: 24px;
-    line-height: 28px;
-    margin: 30px 0 36px 30px;
-}
-.create-event-input-field-flex-box-row{
+.create-event-modal-box {
+  .create-event-modal-box-header{
+    display: flex;
+    margin: 3rem 2.3rem 3.6rem 3rem;
+    justify-content: space-between;
+    img{
+      height: 2.4rem;
+      padding-top: .3rem;
+    }
+
+    h3 {
+      font-size: 24px;
+      line-height: 28px;
+      margin: 0;
+      color: #424242;
+      font-weight: 500;
+    }
+  }
+  .create-event-input-field-flex-box-row{
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: space-evenly;
-}
-.create-event-input-field-flex-box-column{
+  }
+  .create-event-input-field-flex-box-column{
     display: flex;
     flex-direction: column;
-}
-.create-event-input-element{
+  }
+  .create-event-input-element{
     margin: 0 0 15px 0;
     width: 300px;
+  }
+
+  .create-event-input-field-describe{
+    margin: 2rem 3.4rem 0 3.4rem;
+  }
+
 }

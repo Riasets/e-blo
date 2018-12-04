@@ -4,8 +4,7 @@ import { Redirect } from "react-router";
 import { Dispatch } from "redux";
 
 import { Actions } from "../../store/actions/actions";
-
-import CreateEvent from "../../components/createElement/CreateEvent";
+import CreateEvent  from "src/components/createElement/CreateEvent";
 import Timeline from "../../components/Timeline/Timeline";
 
 import './schedule.scss';
@@ -31,7 +30,7 @@ class Schedule extends React.Component {
                     <Timeline/>
                 </div>
                 <div className="schedule-item">
-                    <CreateEvent/>
+                  <CreateEvent/>
                 </div>
             </div>);
     }
