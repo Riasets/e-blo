@@ -32,9 +32,10 @@ class MultilineField extends React.Component<IMultilineFieldProps>{
         rows={rows}
         placeholder={placeholder}
         classes = {{
-          root: classes.formControl,
           notchedOutline: classes.notchedOutline,
           focused: classes.focused,
+          multiline: classes.multiline,
+          inputMultiline: classes.inputMultiline,
         }}
     />
     </FormControl>

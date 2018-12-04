@@ -1,23 +1,20 @@
 const InputMultilineFieldStyle = {
-  formControl: {
+  focused: {},
+  inputMultiline: {
+    fontFamily: "'Rubik', sans-serif",
+  },
+  notchedOutline: {},
+  multiline: {
     fontSize: "1.4rem",
     fontWeight: 400,
-    fontFamily: "'Rubick', sans-serif",
+    fontFamily: "'Rubik', sans-serif",
     '&$focused':{
-      '&$notchedOutline':{
+      '& $notchedOutline':{
         borderColor: '#26a69a',
+        borderWidth: ".2rem",
       },
     },
   },
-  focused: {
-    '&$notchedOutline':{
-      borderColor: '#26a69a',
-    },
-  },
-  inputMultiline: {
-    fontFamily: "'Rubick', sans-serif",
-  },
-  notchedOutline: {},
 };
 
 export default InputMultilineFieldStyle;

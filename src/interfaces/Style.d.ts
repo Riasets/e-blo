@@ -6,4 +6,5 @@ export default interface IStyleClasses {
   shrink?: any;
   notchedOutline?: any;
   inputMultiline?: any;
+  multiline?: any;
 }
