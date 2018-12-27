@@ -1,0 +1,59 @@
+.register-paper {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.register-container-form{
+    margin-top: 7.2rem;
+    width: 60rem;
+    height: 45.9rem;
+}
+
+.register-container{
+    display: flex;
+    justify-content: center;
+}
+
+.register-paper>h3{
+    text-align: center;
+    margin: 1.8rem 0 1.8rem 0;
+    font-size: 2.4rem;
+    font-weight: 400;
+    letter-spacing: 0.3pt;
+    line-height: 2.9rem;
+    color: #212121;
+}
+
+.register-paper>.register-button{
+    cursor: pointer;
+    background-color: #26a69a;
+    color: #fff;
+    font-weight: 500;
+    font-size: 1.6rem;
+    line-height: 2.4rem;
+    letter-spacing: 0.25pt;
+    padding: 1.3rem 4.8rem 1.1rem 4.8rem;
+    border-radius: 1.3rem;
+    text-align: center;
+    margin: 2.4rem auto 0 auto;
+    border: none;
+}
+
+.register-paper>.register-login-link{
+    text-decoration: none;
+    color: #212121;
+    font-size: 1.4rem;
+    line-height: 1.6rem;
+    letter-spacing: 0.12pt;
+    font-weight: 500;
+    cursor: pointer;
+    text-align: center;
+    margin: 2.1rem 0 2.1rem 0;
+}
+
+.register-paper>.register-input{
+    width: 37.5rem;
+    height: 6.4rem;
+    margin: 1.2rem auto 1.2rem auto;
+}

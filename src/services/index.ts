@@ -2,8 +2,8 @@ import authFetches from './auth';
 import scheduleFetches from "./schedule";
 
 const fetches = {
-    ...authFetches,
-    ...scheduleFetches,
+  ...authFetches,
+  ...scheduleFetches,
 };
 
 export default fetches;

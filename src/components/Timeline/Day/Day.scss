@@ -1,0 +1,19 @@
+.day-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #e0f2f1;
+    border-radius: .5rem ;
+    width: 42.0rem;
+    margin: .5rem;
+}
+
+.day-container>h6{
+    color: #757575;
+    letter-spacing: 0.1pt;
+    line-height: 2.4rem;
+    font-size: 1.4rem;
+    font-weight: 400;
+    text-align: center;
+    margin: 1.3rem 0 1.8rem 0;
+}

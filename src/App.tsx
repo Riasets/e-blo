@@ -1,12 +1,9 @@
 import * as React from 'react';
 
-import Header from './containers/header/header';
-import Main from './containers/main/main';
+import Header from './containers/header/Header';
+import Main from './containers/main/Main';
 
-
-import './App.css';
-
-import "normalize.css";
+import 'normalize.css';
 
 class App extends React.Component {
   public render() {

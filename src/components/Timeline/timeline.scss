@@ -1,0 +1,17 @@
+.timeline-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 2.5rem;
+}
+.timeline-container>h2{
+    margin: 1.9rem .5rem 1.4rem .5rem;
+    font-size: 2.4rem;
+    color: #212121;
+    font-weight: 700;
+}
+
+.timeline-days-container{
+
+    height: calc(100vh - 12.8rem);
+}

@@ -1,0 +1,25 @@
+.day-event-container{
+    margin: 0 .5rem .9rem .5rem;
+    background-color: #fafafa;
+    border-radius: .5rem;
+    box-shadow: 0 .1rem .3rem rgba(0,0,0,0.4);
+}
+
+.day-event-container>h2{
+    font-size: 1.6rem;
+    line-height: 2.8rem;
+    color: #424242;
+    font-weight: 400;
+    margin: 0;
+    padding: 0 .7rem 0 .7rem;
+    letter-spacing: 0;
+}
+.day-event-container>p{
+    font-size: 1.2rem;
+    line-height: 1.6rem;
+    color: #757575;
+    padding: 0 .8rem .4rem .8rem;
+    margin: 0;
+    letter-spacing: 0;
+    font-weight: 400;
+}

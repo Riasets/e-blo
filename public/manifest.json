@@ -1,6 +1,6 @@
 {
-  "short_name": "E-blo",
-  "name": "Create React App Sample",
+  "short_name": "List",
+  "name": "List schedule",
   "icons": [
     {
       "src": "favicon.ico",
