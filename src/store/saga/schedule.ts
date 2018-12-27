@@ -18,10 +18,10 @@ function* callGetSchedule() {
             .then(res => res.json())
             .catch(err => err)
     ));
-  if (data.error) {
-    yield put(Actions.getScheduleError());
-  } else {
+  if (!(data instanceof Error)) {
     yield put(Actions.getScheduleSuccess(data));
+  } else {
+    yield put(Actions.getScheduleError());
   }
 }
 

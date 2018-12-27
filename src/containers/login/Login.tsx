@@ -57,7 +57,8 @@ class Login extends React.Component<ILoginProps> {
     }
     return (
                 <div className={ 'login-container' }>
-                    <Paper className={ 'login-paper' }>
+                    <Paper className={ 'paper' }>
+                      <form className={ 'login-paper' }>
                         <h3>Вход</h3>
                         <div className={ 'login-input' }>
                             <FormControl fullWidth={true}>
@@ -107,12 +108,13 @@ class Login extends React.Component<ILoginProps> {
                             <p>{error}</p>
                        )
                         }
-                        <a className={'login-button'} onClick={this.handleSubmit}>
+                        <button className={'login-button'} onClick={this.handleSubmit}>
                             Войти
-                        </a>
+                        </button>
                         <Link className={'login-register-link'} to="/register">
                           Зарегистрироваться
                         </Link>
+                      </form>
                     </Paper>
                 </div>
     );

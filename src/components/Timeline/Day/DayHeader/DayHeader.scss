@@ -1,23 +1,23 @@
 .day-header-container{
     background-color: #26a69a;
-    border-radius: 5px;
-    margin-bottom: 9px;
+    border-radius: .5rem;
+    margin-bottom: .9rem;
 }
 .day-header-container>h2{
     color: white;
-    padding: 12px 12px 3px 12px;
+    padding: 1.2rem 1.2rem .3rem 1.2rem;
     margin: 0;
-    line-height: 24px;
-    font-size: 20px;
+    line-height: 2.4rem;
+    font-size: 2.0rem;
     font-weight: 400;
     letter-spacing: 0.25pt;
 }
 .day-header-container>p{
     letter-spacing: 0;
-    padding: 0 12px 5px 12px;
+    padding: 0 1.2rem .5rem 1.2rem;
     margin: 0;
     color: #c0f5f5f5;
-    line-height: 24px;
-    font-size: 14px;
+    line-height: 2.4rem;
+    font-size: 1.4rem;
     font-weight: 400;
 }

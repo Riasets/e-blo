@@ -11,6 +11,7 @@ import Paper from '@material-ui/core/Paper';
 import * as React from 'react';
 import withStyles from '@material-ui/core/styles/withStyles';
 import MultilineField from './MultilineField';
+import DoubleSlider from '../DoubleSlider/DoubleSlider';
 
 import InputFieldStyle from '../../styles/InputFieldStyle';
 import { connect } from 'react-redux';
@@ -275,6 +276,8 @@ class CreateEvent extends React.Component {
                         </div>
                         <div className="create-event-input-field-flex-box-column">
                           Here is time
+                          <DoubleSlider
+                          />
                           <div className="create-event-input-field-describe">
                             <h5>Описание</h5>
                             <MultilineField

@@ -1,20 +1,20 @@
 .navitem-container{
-    width: 120px;
+    width: 12.0rem;
     text-align: center;
     cursor: pointer;
 }
 
 .navitem-container>.navitem-info-container>h6{
     color: #999999;
-    font-size: 14px;
-    line-height: 17px;
+    font-size: 1.4rem;
+    line-height: 1.7rem;
     margin: 0;
     letter-spacing: 0.09pt;
     font-weight: 500;
 }
 
 .active{
-    border-bottom: 2px #fff solid;
+    border-bottom: .2rem #fff solid;
 }
 
 .active>.navitem-info-container>h6, .active>.navitem-info-container>.navitem-icon{
@@ -22,7 +22,7 @@
 }
 
 .navitem-info-container{
-    margin: 11px 0 7px 0;
+    margin: 1.1rem 0 .7rem 0;
 }
 
 .navitem-icon{

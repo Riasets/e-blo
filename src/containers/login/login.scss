@@ -1,19 +1,21 @@
 .login-paper {
-    margin-top: 72px;
     display: flex;
     justify-content: center;
     flex-direction: column;
-    width: 600px;
-    height: 371px;
+}
+
+.paper{
+    width: 60.0rem;
+    margin-top: 7.2rem;
 }
 
 .login-paper>h3{
     text-align: center;
-    margin: 18px 0 18px 0;
-    font-size: 24px;
+    margin: 1.8rem 0 1.8rem 0;
+    font-size: 2.4rem;
     font-weight: 400;
     letter-spacing: 0.3pt;
-    line-height: 29px;
+    line-height: 2.9rem;
     color: #212121;
 }
 
@@ -22,31 +24,32 @@
     background-color: #26a69a;
     color: #fff;
     font-weight: 500;
-    font-size: 16px;
-    line-height: 24px;
+    font-size: 1.6rem;
+    line-height: 2.4rem;
     letter-spacing: 0.25pt;
-    padding: 13px 48px 11px 48px;
-    border-radius: 13px;
+    padding: 1.3rem 4.8rem 1.1rem 4.8rem;
+    border-radius: 1.3rem;
     text-align: center;
-    margin: 24px auto 0 auto;
+    margin: 2.4rem auto 0 auto;
+    border: none;
 }
 
 .login-paper>.login-register-link{
     text-decoration: none;
     color: #212121;
-    font-size: 14px;
-    line-height: 16px;
+    font-size: 1.4rem;
+    line-height: 1.6rem;
     letter-spacing: 0.12pt;
     font-weight: 500;
     cursor: pointer;
     text-align: center;
-    margin: 21px 0 21px 0;
+    margin: 2.1rem 0 2.1rem 0;
 }
 
 .login-paper>.login-input{
-    width: 375px;
-    height: 64px;
-    margin: 12px auto 12px auto;
+    width: 37.5rem;
+    height: 6.4rem;
+    margin: 1.2rem auto 1.2rem auto;
 }
 
 .login-container{

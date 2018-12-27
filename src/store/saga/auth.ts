@@ -39,11 +39,11 @@ function* callRefreshToken() {
     const data = yield call(() => (fetches.refreshTokenFetch(token)
             .then(res => res.json())
             .catch(err => err)));
-    if (data.error) {
+    if (data.status === 200) {
+      yield put(Actions.setNewToken({ ...data, expires_in: Date.now() + 35000 }));
+    } else {
       yield put(Actions.logoutAuth());
       yield put(Actions.logoutSchedule());
-    } else {
-      yield put(Actions.setNewToken({ ...data, expires_in: Date.now() + 35000 }));
     }
   }
 }

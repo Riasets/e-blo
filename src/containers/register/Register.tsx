@@ -75,7 +75,8 @@ class Register extends React.Component {
     }
     return (
                 <div className={"register-container"}>
-                        <Paper className={'register-paper'}>
+                        <Paper className={'register-container-form'}>
+                          <form className={'register-paper'}>
                             <h3>Регистрация</h3>
                             <div className="register-input">
                                 <FormControl fullWidth={true} required={true}>
@@ -154,13 +155,14 @@ class Register extends React.Component {
                                     <p>{error}</p>
                                 )
                                 }
-                                <a className={"register-button"} onClick={this.handleSubmit}>
+                                <button className={"register-button"} onClick={this.handleSubmit}>
                                     Зарегистрироваться
-                                </a>
+                                </button>
 
                             <Link className={"register-login-link"} to='/login'>
                               У меня уже есть аккаунт
                             </Link>
+                          </form>
                         </Paper>
                 </div>
     );
