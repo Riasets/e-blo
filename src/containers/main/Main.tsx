@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Switch } from 'react-router-dom';
+import { connect } from "react-redux";
 
 import Friends from '../friends/Friends';
 import Login from '../login/Login';
@@ -7,23 +8,68 @@ import Register from '../register/Register';
 import Schedule from '../schedule/Schedule';
 import Search from '../search/Search';
 import Settings from '../settings/Settings';
+import PrivateRoute from '../../HOCs/PrivateRoute';
 
-class Main extends React.Component {
+import IMain from  './Main.d';
+
+class Main extends React.Component<IMain> {
   public render() {
     return (
             <div>
                 <Switch>
-                    <Route exact={true} path='/friends'  component={Friends}/>
-                    <Route exact={true} path='/schedule'  component={Schedule}/>
-                    <Route exact={true} path='/search'  component={Search}/>
-                    <Route exact={true} path='/settings'  component={Settings}/>
-                    <Route exact={true} path='/login'  component={Login}/>
-                    <Route exact={true} path='/register'  component={Register}/>
-                    <Route component={Login}/>
+                    <PrivateRoute
+                      exact={true}
+                      path='/friends'
+                      component={Friends}
+                      otherPath='/login'
+                      auth={this.props.AuthInfo.logged}
+                    />
+                    <PrivateRoute
+                      exact={true}
+                      path='/schedule'
+                      component={Schedule}
+                      otherPath='/login'
+                      auth={this.props.AuthInfo.logged}
+                    />
+                    <PrivateRoute
+                      exact={true}
+                      path='/search'
+                      otherPath='/login'
+                      auth={this.props.AuthInfo.logged}
+                      component={Search}/>
+                    <PrivateRoute
+                      exact={true}
+                      path='/settings'
+                      otherPath='/login'
+                      auth={this.props.AuthInfo.logged}
+                      component={Settings}/>
+                    <PrivateRoute
+                      exact={true}
+                      path='/login'
+                      otherPath='/schedule'
+                      auth={!this.props.AuthInfo.logged}
+                      component={Login}/>
+                    <PrivateRoute
+                      exact={true}
+                      path='/register'
+                      otherPath='/schedule'
+                      auth={!this.props.AuthInfo.logged}
+                      component={Register}
+                    />
+                    <PrivateRoute
+                      component={Login}
+                      otherPath='/schedule'
+                      auth={!this.props.AuthInfo.logged}
+                    />
                 </Switch>
             </div>
     );
   }
 }
 
-export default Main;
+function mapStateToProps(state: any) {
+  return { AuthInfo:
+      { logged: state.Auth.logged } };
+}
+
+export default connect(mapStateToProps)(Main);

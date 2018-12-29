@@ -93,6 +93,7 @@ class Login extends React.Component<ILoginProps> {
                                 </InputLabel>
                                 <Input
                                     value={password}
+                                    type={'password'}
                                     name={'password'}
                                     onChange={this.handleChange}
                                     id="password-simple"
