@@ -95,6 +95,10 @@ class CreateEvent extends React.Component {
     }
   }
 
+  public mousemove = (e: any) => {
+    (console as any).log(e.target);
+    (console as any).log(e.handler);
+  }
   public render() {
       // @ts-ignore
     const { classes } = this.props;
@@ -209,19 +213,6 @@ class CreateEvent extends React.Component {
 
                             </div>
                             <div className="create-event-input-field-flex-box-column">
-                                <div className="create-event-input-element">
-                                    <FormControlLabel
-                                        control={
-                                            <Switch
-                                                checked={repeat}
-                                                name="repeat"
-                                                onChange={this.handleToggle}
-                                                value="repeat"
-                                            />
-                                        }
-                                        label="Повторяющееся событие"
-                                    />
-                                </div>
                                     <div className="create-event-input-element">
                                         <FormControl required={true}>
                                             <TextField
@@ -243,35 +234,6 @@ class CreateEvent extends React.Component {
                                             }
                                         </FormControl>
                                     </div>
-                                {repeat &&
-                                <div className="create-event-input-element">
-                                    <FormControl fullWidth={true}>
-                                        <TextField
-                                            select={true}
-                                            value={whenRepeat}
-                                            onChange={this.handleChange}
-                                            name="whenRepeat"
-                                            label="Частота события"
-                                            error={errorWhenRepeat}
-                                        >
-                                            {
-                                                repeats.map(option => (
-                                                    <MenuItem key={option.value}
-                                                              value={option.value}>
-                                                        {option.name}
-                                                    </MenuItem>
-                                                ))
-                                            }
-                                        </TextField>
-                                        { errorWhenRepeat &&
-                                        <FormHelperText id="component-error-text">
-                                          Выберите частоту повторения события!
-                                        </FormHelperText>
-                                        }
-                                    </FormControl>
-                                </div>
-                                }
-
                             </div>
                         </div>
                         <div className="create-event-input-field-flex-box-column">

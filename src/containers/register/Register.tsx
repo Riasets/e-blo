@@ -92,10 +92,17 @@ class Register extends React.Component {
                                            id="email-simple"
                                            classes=
                                              {{root: classes.formControl,
-                                               underline: classes.underline}}
+                                               underline: classes.underline,
+                                               error: classes.error,
+                                               focused: classes.focused,
+                                             }}
                                            fullWidth={true}/>
                                     { shortEmail &&
-                                    <FormHelperText id="component-error-text">
+                                    <FormHelperText
+                                        id="component-error-text"
+                                        classes={{
+                                          root: classes.errorRoot,
+                                        }}>
                                       Наверное это не э-мейл...
                                     </FormHelperText>
                                     }
@@ -116,10 +123,19 @@ class Register extends React.Component {
                                       onChange={this.handleChange}
                                       classes=
                                         {{root: classes.formControl,
-                                          underline: classes.underline}}
+                                          underline: classes.underline,
+                                          inputType: classes.inputType,
+                                          error: classes.error,
+                                          focused: classes.focused,
+                                        }}
                                       id="password-simple"/>
                                     { shortPassword &&
-                                    <FormHelperText id="component-error-text">
+                                    <FormHelperText
+                                        id="component-error-text"
+                                        classes={{
+                                          root: classes.errorRoot,
+                                        }}
+                                    >
                                       Пароль слишком короткий
                                     </FormHelperText>
                                     }
@@ -140,10 +156,18 @@ class Register extends React.Component {
                                       onChange={this.handleChange}
                                       classes=
                                         {{root: classes.formControl,
-                                          underline: classes.underline}}
+                                          underline: classes.underline,
+                                          inputType: classes.inputType,
+                                          error: classes.error,
+                                          focused: classes.focused,
+                                        }}
                                       id="password-repeat-simple"/>
                                     { noEqualPassword &&
-                                        <FormHelperText id="component-error-text">
+                                        <FormHelperText
+                                            id="component-error-text"
+                                            classes={{
+                                              root: classes.errorRoot,
+                                            }}>
                                           Пароли не совпадают
                                         </FormHelperText>
                                     }

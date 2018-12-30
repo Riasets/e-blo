@@ -11,6 +11,18 @@ export interface ILoginProps{
   classes: IStyleClasses;
 }
 
+interface IStyleClasses{
+  formControl?: any;
+  labelStyle?: any;
+  underline?: any;
+  focused?: any;
+  shrink?: any;
+  input?: any;
+  inputType?: any;
+  errorRoot?: any;
+  error?: any;
+}
+
 interface IAuthInfo{
   error: boolean;
   isLoading: boolean;

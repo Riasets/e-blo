@@ -92,6 +92,7 @@ class Login extends React.Component<ILoginProps> {
                                     Пароль
                                 </InputLabel>
                                 <Input
+                                    type="password"
                                     value={password}
                                     type={'password'}
                                     name={'password'}
@@ -99,7 +100,9 @@ class Login extends React.Component<ILoginProps> {
                                     id="password-simple"
                                     classes=
                                       {{root: classes.formControl,
-                                        underline: classes.underline}}
+                                        underline: classes.underline,
+                                        inputType: classes.inputType,
+                                      }}
                                 />
                             </FormControl>
                         </div>
