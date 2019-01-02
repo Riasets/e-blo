@@ -67,6 +67,11 @@ class CreateEvent extends React.Component {
   public closeModal() {
     this.setState({ open: false });
   }
+
+  public setTime = (start: string, end: string) => {
+    this.setState({ start, end });
+  }
+
   public createEvent() {
     const errorWhenRepeat = this.state.repeat && this.state.whenRepeat === '';
     const errorStartDay = this.state.startDay === '';
@@ -277,6 +282,9 @@ class CreateEvent extends React.Component {
                         <div className="create-event-input-field-flex-box-column">
                             Here is time
                             <DoubleSlider
+                              setTime={this.setTime}
+                              firstInitialPos={30}
+                              secondInitialPos={60}
                             />
                             <div className="create-event-input-field-describe">
                                 <h5>Описание</h5>

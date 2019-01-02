@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { ISliderElement } from './SliderElement.d';
+import { timeToString } from "../../../utils/dayInfoParse";
 
 import './SliderElement.scss';
 
@@ -8,11 +9,21 @@ class SliderElement extends React.Component<ISliderElement> {
   public state = {
     isMouseDown: false,
     shiftX: 0,
+    time: "00:00",
   };
 
+  constructor(props:ISliderElement) {
+    super(props);
+
+    const newTime = timeToString(props.initialPos * 14.4);
+    this.state = {
+      isMouseDown: false,
+      shiftX: 0,
+      time: newTime,
+    };
+  }
+
   public mouseDownHandler = (e: React.MouseEvent) => {
-    /*this.setState({ isMouseDown: true });
-    this.setState({ shiftX: this.props.mouseDown(e, this.props.name) });*/
     e.preventDefault();
     document.addEventListener('mousemove', this.mouseMoveHandler);
     document.addEventListener('mouseup', this.mouseUpHandler);
@@ -23,16 +34,10 @@ class SliderElement extends React.Component<ISliderElement> {
   }
 
   public mouseMoveHandler = (e: any) => {
-    /*this.props.mouseMove(
-      e,
-      this.state.isMouseDown,
-      this.props.slider,
-      this.props.name,
-      this.state.shiftX);*/
-    console.log(this.state.isMouseDown);
     if (this.state.isMouseDown) {
       const slider = document.getElementById(this.props.slider);
       const toddler = document.getElementById(this.props.name);
+      console.log(slider);
       const sliderCoords = this.getCoords(slider as HTMLDivElement);
       let newLeft = e.pageX - this.state.shiftX - sliderCoords.left;
 
@@ -41,6 +46,8 @@ class SliderElement extends React.Component<ISliderElement> {
       if (newLeft > rightSide) newLeft = rightSide;
 
       toddler!.style.left = newLeft + 'px';
+      this.setState({ time: this.getTime() });
+      this.props.getTime(this.state.time, this.props.name);
     }
   }
 
@@ -58,14 +65,26 @@ class SliderElement extends React.Component<ISliderElement> {
     };
   }
 
+  public getTime = () => {
+    const slider = document.getElementById(this.props.slider);
+    const toddler = document.getElementById(this.props.name);
+    const left = Number(toddler!.style.left!.match(/[0-9]/g)!.join(''));
+    const sliderWidth = Number(slider!.clientWidth!);
+    const toddlerWidth = Number(toddler!.clientWidth!);
+    const percents = left / (sliderWidth - toddlerWidth);
+    return timeToString(Math.round(1440 * percents));
+  }
+
   public render() {
     return(
       <div
         className={'thumb'}
         id={this.props.name}
         onMouseDown={this.mouseDownHandler}
+        style={{ left: `${this.props.initialPos}%` }}
       >
         <span/>
+        <p className={'time'}>{ this.state.time }</p>
       </div>
     );
   }

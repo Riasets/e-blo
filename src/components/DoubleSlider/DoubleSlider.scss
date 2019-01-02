@@ -3,4 +3,13 @@
   border-radius: .8rem;
   height: 1.6rem;
   position: relative;
+  display: flex;
+  .hour{
+    width: calc(100%/24);
+    height: 100%;
+    border-right: .1rem solid #e0e0e0;
+  }
+  .hour:last-child{
+    border-right: none;
+  }
 }

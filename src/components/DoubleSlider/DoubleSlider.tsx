@@ -2,62 +2,74 @@ import * as React from 'react';
 import { IDoubleSliderProps } from './DoubleSlider.d';
 import './DoubleSlider.scss';
 import SliderElement from "./SliderElement/SliderElement";
+import { timeStringToNum } from "../../utils/dateParse";
+import { timeToString } from "../../utils/dayInfoParse";
 
 class DoubleSlider extends React.Component<IDoubleSliderProps>{
   public static defaultProps = {
     classes: 'slider',
   };
 
-  public mouseDownHandler = (e: React.MouseEvent, name: string) => {
-    e.preventDefault();
-    const toddler = document.getElementById(name);
-    const toddlerCoords = this.getCoords(toddler as HTMLDivElement);
-    return e.pageX - toddlerCoords.left;
-  }
+  public state = {
+    firstThumb: '',
+    secondThumb: '',
+  };
 
-  public mouseMoveHandler = (e: React.MouseEvent,
-                             isMouseDown: boolean,
-                             sliderName: string,
-                             name: string,
-                             shiftX: number) => {
-    console.log(isMouseDown);
-    if (isMouseDown) {
-      const slider = document.getElementById(sliderName);
-      const toddler = document.getElementById(name);
-      const sliderCoords = this.getCoords(slider as HTMLDivElement);
-      let newLeft = e.pageX - shiftX - sliderCoords.left;
+  constructor(props: IDoubleSliderProps) {
+    super(props);
 
-      if (newLeft < 0) newLeft = 0;
-      const rightSide = slider!.clientWidth - toddler!.offsetWidth;
-      if (newLeft > rightSide) newLeft = rightSide;
-
-      toddler!.style.left = newLeft + 'px';
-    }
-  }
-
-  public getCoords = (elem: HTMLDivElement) => {
-    const box = elem.getBoundingClientRect();
-    return {
-      left: box.left,
-      top: box.top + pageYOffset,
+    this.state = {
+      firstThumb: timeToString(props.firstInitialPos * 14.4),
+      secondThumb: timeToString(props.secondInitialPos * 14.4),
     };
+  }
+
+  public getTime = (time: string, name: string) => {
+    this.setState({ [name]: time });
+    timeStringToNum(this.state.firstThumb) > timeStringToNum(this.state.secondThumb)
+      ? this.props.setTime(this.state.secondThumb, this.state.firstThumb)
+      : this.props.setTime(this.state.firstThumb, this.state.secondThumb);
   }
 
   public render() {
     return(
       <div id={'slider'} className={this.props.classes}>
         <SliderElement
-          mouseDown={this.mouseDownHandler}
-          mouseMove={this.mouseMoveHandler}
-          name={'first-thumb'}
+          name={'firstThumb'}
           slider={'slider'}
+          initialPos={this.props.firstInitialPos}
+          getTime={this.getTime}
         />
         <SliderElement
-          mouseDown={this.mouseDownHandler}
-          mouseMove={this.mouseMoveHandler}
-          name={'second-thumb'}
+          name={'secondThumb'}
           slider={'slider'}
+          initialPos={this.props.secondInitialPos}
+          getTime={this.getTime}
         />
+        <div className="hour"/>
+        <div className="hour"/>
+        <div className="hour"/>
+        <div className="hour"/>
+        <div className="hour"/>
+        <div className="hour"/>
+        <div className="hour"/>
+        <div className="hour"/>
+        <div className="hour"/>
+        <div className="hour"/>
+        <div className="hour"/>
+        <div className="hour"/>
+        <div className="hour"/>
+        <div className="hour"/>
+        <div className="hour"/>
+        <div className="hour"/>
+        <div className="hour"/>
+        <div className="hour"/>
+        <div className="hour"/>
+        <div className="hour"/>
+        <div className="hour"/>
+        <div className="hour"/>
+        <div className="hour"/>
+        <div className="hour"/>
       </div>
     );
   }

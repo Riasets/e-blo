@@ -1,4 +1,5 @@
 import { AuthFetch } from './instances';
+import axios from 'axios';
 
 const scheduleFetches = {
   getScheduleFetch: (token: Headers) => {
@@ -9,12 +10,14 @@ const scheduleFetches = {
   },
   postEventFetch: (event: any) => {
     (console as any).log(event);
-    const options: RequestInit = {
-      body: event.event,
-      headers: { token: event.token },
+    const options: any = {
+      data: { hello: 'hello' },
+      headers: { token: event.token, 'Content-Type': 'application/x-www-form-urlencoded' },
+      url: 'http://localhost:8000/api/event',
+      method: "POST",
     };
-    return AuthFetch.post('/api/event', options);
+    return axios('/api/event', options);
   },
 };
-
+// TODO исправить инкод на обычный объект, думаю, можно вернуть как было
 export default scheduleFetches;
