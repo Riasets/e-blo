@@ -5,10 +5,7 @@ const PrivateRoute = ({ component: Component, auth, otherPath, history, ...rest 
   const check = (props: any) => (
     auth
       ? <Component {...props}/>
-      : <Redirect to = {{
-        pathname: otherPath,
-        state: { from: props.location },
-      }}/>
+      : <Redirect to = {otherPath}/>
 
   );
 

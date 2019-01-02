@@ -9,12 +9,12 @@ import { getStatusRefreshingToken, getRefreshToken } from "../reducers/auth";
 function* callLogin({ payload }) {
   yield put(Actions.loginLoad());
   const data = yield call(() => (fetches.loginFetch(payload)
-  .then(res => res.json())
+  .then(res => res)
   .catch(err => err)));
   if (data instanceof Error) {
     yield put(Actions.loginError(data.message));
   } else {
-    yield put(Actions.loginSuccess({ ...data, expires_in: Date.now() + 35000 }));
+    yield put(Actions.loginSuccess({ ...data.data, expires_in: Date.now() + 35000 }));
   }
 }
 
@@ -22,7 +22,7 @@ function* callLogin({ payload }) {
 function* callRegister({ payload }) {
   yield put(Actions.registerLoad());
   const data = yield call(() => (fetches.registerUserFetch(payload)
-            .then(res => res.json())
+            .then(res => res)
             .catch(err => err)));
   if (data instanceof Error) {
     yield put(Actions.registerError(data.message));
@@ -36,10 +36,10 @@ function* callRefreshToken() {
     yield put(Actions.tokenIsRefreshing());
     const { token } = yield select(getRefreshToken);
     const data = yield call(() => (fetches.refreshTokenFetch(token)
-            .then(res => res.json())
+            .then(res => res)
             .catch(err => err)));
     if (data.status === 200) {
-      yield put(Actions.setNewToken({ ...data, expires_in: Date.now() + 35000 }));
+      yield put(Actions.setNewToken({ ...data.data, expires_in: Date.now() + 35000 }));
     } else {
       yield put(Actions.logoutAuth());
       yield put(Actions.logoutSchedule());

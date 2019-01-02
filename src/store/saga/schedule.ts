@@ -15,11 +15,11 @@ function* callGetSchedule() {
   }
   // @ts-ignore
   const data = yield call(() => (fetches.getScheduleFetch({ token } as Headers)
-            .then(res => res.json())
+            .then(res => res)
             .catch(err => err)
     ));
   if (!(data instanceof Error)) {
-    yield put(Actions.getScheduleSuccess(data));
+    yield put(Actions.getScheduleSuccess(data.data));
   } else {
     yield put(Actions.getScheduleError());
   }
@@ -37,7 +37,7 @@ function* callPostEvent({ payload }) {
     expires_in = newToken.expires_in;
   }
   const data = yield call(() => (fetches.postEventFetch({ token, event: payload })
-        .then(res => res.json())
+        .then(res => res)
         .catch(err => err)
     ));
   if (data instanceof Error) {
