@@ -1,5 +1,6 @@
 export default interface IMain{
-  AuthInfo: MainStoreProps
+  AuthInfo: MainStoreProps,
+  location: any,
 }
 
 interface MainStoreProps{
