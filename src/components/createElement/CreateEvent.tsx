@@ -1,9 +1,9 @@
 import {FormControlLabel,
-  FormHelperText,
-  MenuItem,
-  Modal,
-  Switch,
-  TextField } from '@material-ui/core';
+    FormHelperText,
+    MenuItem,
+    Modal,
+    Switch,
+    TextField } from '@material-ui/core';
 import FormControl from '@material-ui/core/FormControl';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -71,9 +71,9 @@ class CreateEvent extends React.Component {
     const errorWhenRepeat = this.state.repeat && this.state.whenRepeat === '';
     const errorStartDay = this.state.startDay === '';
     const errorEnd = this.state.end === '' ||
-        timeStringToNum(this.state.start) >= timeStringToNum(this.state.end);
+      timeStringToNum(this.state.start) >= timeStringToNum(this.state.end);
     const errorStart = this.state.start === '' ||
-        timeStringToNum(this.state.start) >= timeStringToNum(this.state.end);
+      timeStringToNum(this.state.start) >= timeStringToNum(this.state.end);
     const errorName = this.state.name.length < 4;
     if (!errorName && !errorStart && !errorEnd && !errorStartDay && !errorWhenRepeat) {
             // @ts-ignore
@@ -95,24 +95,20 @@ class CreateEvent extends React.Component {
     }
   }
 
-  public mousemove = (e: any) => {
-    (console as any).log(e.target);
-    (console as any).log(e.handler);
-  }
   public render() {
-      // @ts-ignore
+        // @ts-ignore
     const { classes } = this.props;
     const {
-      errorWhenRepeat,
-      errorStartDay,
-      errorName,
-      name,
-      description,
-      repeat,
-      numberOfLesson,
-      startDay,
-      whenRepeat,
-      isLesson } = this.state;
+            errorWhenRepeat,
+            errorStartDay,
+            errorName,
+            name,
+            description,
+            repeat,
+            numberOfLesson,
+            startDay,
+            whenRepeat,
+            isLesson } = this.state;
     const repeats = [{
       name: 'Каждый день',
       value: 1,
@@ -151,10 +147,10 @@ class CreateEvent extends React.Component {
                 >
                     <Paper className="create-event-modal-box">
                         <div className="create-event-modal-box-header">
-                          <h3>Создание события в расписании</h3>
-                          <img onClick={this.closeModal}
-                               src={require("../../img/close.png")}
-                               alt="close"/>
+                            <h3>Создание события в расписании</h3>
+                            <img onClick={this.closeModal}
+                                 src={require("../../img/close.png")}
+                                 alt="close"/>
                         </div>
                         <div  className={'create-event-input-field-flex-box-row'}>
                             <div className="create-event-input-field-flex-box-column">
@@ -176,7 +172,7 @@ class CreateEvent extends React.Component {
                                         />
                                         { errorName &&
                                         <FormHelperText id="component-error-text">
-                                          Название должно быть не короче 4 символов
+                                            Название должно быть не короче 4 символов
                                         </FormHelperText>
                                         }
                                     </FormControl>
@@ -196,26 +192,39 @@ class CreateEvent extends React.Component {
                                     />
                                 </div>
                                 { isLesson &&
-                                    <div className="create-event-input-element">
-                                        <FormControl fullWidth={true}>
-                                            <TextField
-                                                value={numberOfLesson}
-                                                name="numberOfLesson"
-                                                onChange={this.handleChange}
-                                                label="Номер пары"
-                                                type="number"
-                                                required={true}
+                                <div className="create-event-input-element">
+                                    <FormControl fullWidth={true}>
+                                        <TextField
+                                            value={numberOfLesson}
+                                            name="numberOfLesson"
+                                            onChange={this.handleChange}
+                                            label="Номер пары"
+                                            type="number"
+                                            required={true}
 
-                                            />
-                                        </FormControl>
-                                    </div>
+                                        />
+                                    </FormControl>
+                                </div>
                                 }
 
                             </div>
                             <div className="create-event-input-field-flex-box-column">
-                                    <div className="create-event-input-element">
-                                        <FormControl required={true}>
-                                            <TextField
+                                <div className="create-event-input-element">
+                                    <FormControlLabel
+                                        control={
+                                            <Switch
+                                                checked={repeat}
+                                                name="repeat"
+                                                onChange={this.handleToggle}
+                                                value="repeat"
+                                            />
+                                        }
+                                        label="Повторяющееся событие"
+                                    />
+                                </div>
+                                <div className="create-event-input-element">
+                                    <FormControl required={true}>
+                                        <TextField
                                             InputLabelProps={{
                                               shrink: true,
                                             }}
@@ -226,31 +235,60 @@ class CreateEvent extends React.Component {
                                             onChange={this.handleChange}
                                             label="День начала"
                                             required={true}
-                                            />
-                                            { errorStartDay &&
-                                            <FormHelperText id="component-error-text">
-                                              Введите начальный день!
-                                            </FormHelperText>
+                                        />
+                                        { errorStartDay &&
+                                        <FormHelperText id="component-error-text">
+                                            Введите начальный день!
+                                        </FormHelperText>
+                                        }
+                                    </FormControl>
+                                </div>
+                                {repeat &&
+                                <div className="create-event-input-element">
+                                    <FormControl fullWidth={true}>
+                                        <TextField
+                                            select={true}
+                                            value={whenRepeat}
+                                            onChange={this.handleChange}
+                                            name="whenRepeat"
+                                            label="Частота события"
+                                            error={errorWhenRepeat}
+                                        >
+                                            {
+                                                repeats.map(option => (
+                                                    <MenuItem key={option.value}
+                                                              value={option.value}>
+                                                        {option.name}
+                                                    </MenuItem>
+                                                ))
                                             }
-                                        </FormControl>
-                                    </div>
+                                        </TextField>
+                                        { errorWhenRepeat &&
+                                        <FormHelperText id="component-error-text">
+                                            Выберите частоту повторения события!
+                                        </FormHelperText>
+                                        }
+                                    </FormControl>
+                                </div>
+                                }
+
                             </div>
                         </div>
                         <div className="create-event-input-field-flex-box-column">
-                          Here is time
-                          <DoubleSlider
-                          />
-                          <div className="create-event-input-field-describe">
-                            <h5>Описание</h5>
-                            <MultilineField
-                              value={description}
-                              name={'description'}
-                              onChange={this.handleChange}
-                              placeholder={this.state.isLesson ?
-                                'Например, имя препода, аудитория, корпус' :
-                                'Например, что с собой взять, с кем встреча'}
+                            Here is time
+                            <DoubleSlider
                             />
-                          </div>
+                            <div className="create-event-input-field-describe">
+                                <h5>Описание</h5>
+                                <MultilineField
+                                    value={description}
+                                    name={'description'}
+                                    onChange={this.handleChange}
+                                    placeholder={this.state.isLesson ?
+                                        'Например, имя препода, аудитория, корпус' :
+                                        'Например, что с собой взять, с кем встреча'}
+                                />
+                            </div>
                         </div>
                         <a onClick={this.createEvent}><span>+</span>Добавить</a>
                     </Paper>

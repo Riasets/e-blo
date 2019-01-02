@@ -40,7 +40,7 @@ function* callPostEvent({ payload }) {
         .then(res => res.json())
         .catch(err => err)
     ));
-  if (data.error) {
+  if (data instanceof Error) {
     yield put(Actions.postEventError());
   } else {
     yield put(Actions.postEventSuccess());

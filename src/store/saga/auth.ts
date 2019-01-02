@@ -11,9 +11,8 @@ function* callLogin({ payload }) {
   const data = yield call(() => (fetches.loginFetch(payload)
   .then(res => res.json())
   .catch(err => err)));
-  (console as any).log(data);
-  if (data.error) {
-    yield put(Actions.loginError(data.error));
+  if (data instanceof Error) {
+    yield put(Actions.loginError(data.message));
   } else {
     yield put(Actions.loginSuccess({ ...data, expires_in: Date.now() + 35000 }));
   }
@@ -25,8 +24,8 @@ function* callRegister({ payload }) {
   const data = yield call(() => (fetches.registerUserFetch(payload)
             .then(res => res.json())
             .catch(err => err)));
-  if (data.error) {
-    yield put(Actions.registerError(data.error));
+  if (data instanceof Error) {
+    yield put(Actions.registerError(data.message));
   } else {
     yield put(Actions.registerSuccess());
   }

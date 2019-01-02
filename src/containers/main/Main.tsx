@@ -14,6 +14,7 @@ import IMain from  './Main.d';
 
 class Main extends React.Component<IMain> {
   public render() {
+    console.log(this.props.AuthInfo.logged, !this.props.AuthInfo.logged);
     return (
             <div>
                 <Switch>

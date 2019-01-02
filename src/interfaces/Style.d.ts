@@ -7,4 +7,5 @@ export default interface IStyleClasses {
   notchedOutline?: any;
   inputMultiline?: any;
   multiline?: any;
+  inputType?: any;
 }

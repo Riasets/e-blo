@@ -5,7 +5,7 @@ import Paper from '@material-ui/core/Paper';
 import withStyles from '@material-ui/core/styles/withStyles';
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { Link, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { compose, Dispatch } from 'redux';
 import InputFieldStyle from '../../styles/InputFieldStyle';
 
@@ -52,9 +52,6 @@ class Login extends React.Component<ILoginProps> {
     const { classes } = this.props;
     const { email, password } = this.state;
     const { error } = this.props.AuthInfo;
-    if (this.props.AuthInfo.logged) {
-      return (<Redirect to="/schedule"/>);
-    }
     return (
                 <div className={ 'login-container' }>
                     <Paper className={ 'paper' }>
@@ -94,7 +91,6 @@ class Login extends React.Component<ILoginProps> {
                                 <Input
                                     type="password"
                                     value={password}
-                                    type={'password'}
                                     name={'password'}
                                     onChange={this.handleChange}
                                     id="password-simple"
@@ -129,7 +125,7 @@ function mapStateToProps(state: any) {
   return { AuthInfo:
   { error : state.Auth.error,
     isLoading: state.Auth.isLoading,
-    logged: state.Auth.logged } };
+  } };
 }
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
