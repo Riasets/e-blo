@@ -1,12 +1,13 @@
 {
-  "name": "e-blo",
-  "version": "0.1.0",
+  "name": "list",
+  "version": "0.1.2",
   "private": true,
   "dependencies": {
     "@material-ui/core": "^3.6.1",
     "@material-ui/icons": "^3.0.1",
     "@types/redux": "^3.6.0",
     "ajv": "^6.0.0",
+    "axios": "^0.18.0",
     "node-sass-chokidar": "^1.3.4",
     "normalize.css": "^8.0.0",
     "npm-run-all": "^4.1.3",
@@ -18,8 +19,7 @@
     "react-scripts-ts": "^4.0.8",
     "redux": "^4.0.0",
     "redux-persist": "^5.10.0",
-    "redux-saga": "^0.16.0",
-    "whatwg-fetch": "^2.0.4"
+    "redux-saga": "^0.16.0"
   },
   "scripts": {
     "build-css": "node-sass-chokidar src/ -o src/",

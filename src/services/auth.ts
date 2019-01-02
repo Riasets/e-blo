@@ -1,27 +1,23 @@
-import { api } from './constants';
+import { AuthFetch, NoAuthFetch } from "./instances";
 
 const authFetches = {
   loginFetch: (user: Headers) => {
     const options: RequestInit = {
       headers: user,
-      method: "GET",
     };
-    return fetch(api + '/api/login', options);
+    return NoAuthFetch.get('/api/login', options);
   },
   refreshTokenFetch: (token: string) => {
     const options: RequestInit = {
       headers: { token },
-      method: "GET",
     };
-    return fetch(api + '/api/refresh', options);
+    return AuthFetch.get('/api/refresh', options);
   },
   registerUserFetch: (user: string) => {
     const options: RequestInit = {
       body: user,
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      method: "POST",
     };
-    return fetch(api + '/api/register', options);
+    return NoAuthFetch.post('/api/register', options);
   },
 };
 

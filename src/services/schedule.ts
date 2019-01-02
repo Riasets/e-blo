@@ -1,21 +1,19 @@
-import { api } from "./constants";
+import { AuthFetch } from './instances';
 
 const scheduleFetches = {
   getScheduleFetch: (token: Headers) => {
     const options: RequestInit = {
       headers: token,
-      method: "GET",
     };
-    return fetch(api + '/api/schedule', options);
+    return AuthFetch.get('/api/schedule', options);
   },
   postEventFetch: (event: any) => {
     (console as any).log(event);
     const options: RequestInit = {
       body: event.event,
-      headers: { token: event.token, 'Content-Type': 'application/x-www-form-urlencoded' },
-      method: "POST",
+      headers: { token: event.token },
     };
-    return fetch(api + '/api/event', options);
+    return AuthFetch.post('/api/event', options);
   },
 };
 

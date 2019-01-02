@@ -5,7 +5,7 @@ const PrivateRoute = ({ component: Component, auth, otherPath, ...rest }: any) =
   const check = (props: any) => (
     auth
       ? <Component {...props}/>
-      : <Redirect to={otherPath}/>
+      : <Redirect to = {otherPath}/>
 
   );
   return(<Route {...rest} render={check}/>);

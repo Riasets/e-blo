@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { connect } from "react-redux";
-import { Redirect } from "react-router";
 import { Dispatch } from "redux";
 
 import { Actions } from "../../store/actions/actions";
@@ -22,10 +21,7 @@ class Schedule extends React.Component {
   }
 
   public render() {
-        // @ts-ignore
-    const { logged } = this.props.Auth;
-    if (logged) {
-      return (<div className={'schedule-container'}>
+    return (<div className={'schedule-container'}>
                 <div className="schedule-item">
                     <Timeline/>
                 </div>
@@ -33,15 +29,13 @@ class Schedule extends React.Component {
                   <CreateEvent/>
                 </div>
             </div>);
-    }
-    return (<Redirect to={'/login'}/>);
   }
 }
 
 function mapStateToProps(state: any) {
   return { Schedule: {
     events: state.Schedule.events, schedule_id: state.Schedule.schedule_id },
-    Auth: { logged: state.Auth.logged }};
+  };
 }
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
