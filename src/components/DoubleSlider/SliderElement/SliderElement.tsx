@@ -47,7 +47,7 @@ class SliderElement extends React.Component<ISliderElement> {
 
       toddler!.style.left = newLeft + 'px';
       this.setState({ time: this.getTime() });
-      this.props.getTime(this.state.time, this.props.name);
+      this.props.getTime(this.state.time, this.props.name, newLeft + 'px');
     }
   }
 

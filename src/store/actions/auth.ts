@@ -22,7 +22,7 @@ const getAuthActions = () => ({
   logoutAuth: () => ({ type: AuthActions.LOGOUT_AUTH }),
   redirect: () => ({ type: AuthActions.REDIRECT }),
   refreshToken: () => ({ type: AuthActions.REFRESH_TOKEN }),
-  register: (user:string) => ({ type: AuthActions.REGISTER, payload: user }),
+  register: (user:any) => ({ type: AuthActions.REGISTER, payload: user }),
   registerError: (error: string) => ({ type: AuthActions.REGISTER_ERROR, payload: error }),
   registerLoad: () => ({ type: AuthActions.REGISTER_LOAD }),
   registerSuccess: () => ({ type: AuthActions.REGISTER_SUCCESS }),

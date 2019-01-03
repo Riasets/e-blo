@@ -13,8 +13,6 @@ import { Actions } from "../../store/actions/actions";
 import "./register.scss";
 import InputFieldStyle from '../../styles/InputFieldStyle';
 
-import { encodeBody } from "../../utils/encode";
-
 class Register extends React.Component {
 
   constructor(props: any) {
@@ -207,7 +205,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
       email,
       password,
     };
-    dispatch(Actions.register(encodeBody(body)));
+    dispatch(Actions.register(body));
   },
 });
 
