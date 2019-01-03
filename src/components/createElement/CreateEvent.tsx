@@ -17,7 +17,7 @@ import InputFieldStyle from '../../styles/InputFieldStyle';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import { Actions } from '../../store/actions/actions';
-import { encodeBody } from '../../utils/encode';
+// import { encodeBody } from '../../utils/encode';
 import { timeStringToNum } from "../../utils/dateParse";
 import './createEvent.scss';
 
@@ -310,7 +310,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
   postEvent: (body: any) => {
     body.start = timeStringToNum(body.start);
     body.end = timeStringToNum(body.end);
-    dispatch(Actions.postEvent(encodeBody(body)));
+    dispatch(Actions.postEvent(body));
   },
 });
 

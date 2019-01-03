@@ -1,5 +1,6 @@
 import { AuthFetch } from './instances';
 import axios from 'axios';
+import { encodeBody } from "../utils/encode";
 
 const scheduleFetches = {
   getScheduleFetch: (token: Headers) => {
@@ -11,7 +12,7 @@ const scheduleFetches = {
   postEventFetch: (event: any) => {
     (console as any).log(event);
     const options: any = {
-      data: { hello: 'hello' },
+      data: encodeBody(event.event),
       headers: { token: event.token, 'Content-Type': 'application/x-www-form-urlencoded' },
       url: 'http://localhost:8000/api/event',
       method: "POST",
