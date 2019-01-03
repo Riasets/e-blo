@@ -1,8 +1,10 @@
 import * as React from 'react';
 import { ISliderElement } from './SliderElement.d';
 import { timeToString } from "../../../utils/dayInfoParse";
+import Input from '@material-ui/core/Input';
 
 import './SliderElement.scss';
+import { timeStringToNum } from "../../../utils/dateParse";
 
 class SliderElement extends React.Component<ISliderElement> {
 
@@ -37,7 +39,6 @@ class SliderElement extends React.Component<ISliderElement> {
     if (this.state.isMouseDown) {
       const slider = document.getElementById(this.props.slider);
       const toddler = document.getElementById(this.props.name);
-      console.log(slider);
       const sliderCoords = this.getCoords(slider as HTMLDivElement);
       let newLeft = e.pageX - this.state.shiftX - sliderCoords.left;
 
@@ -65,10 +66,18 @@ class SliderElement extends React.Component<ISliderElement> {
     };
   }
 
+  public handleChange = (e: any) => {
+    this.setState({ time: e.target.value });
+    const toddler = document.getElementById(this.props.name);
+    const percents = timeStringToNum(e.target.value) / 14.4;
+    toddler!.style.left = percents + '%';
+    this.props.getTime(this.state.time, this.props.name, percents + '%');
+  }
+
   public getTime = () => {
     const slider = document.getElementById(this.props.slider);
     const toddler = document.getElementById(this.props.name);
-    const left = Number(toddler!.style.left!.match(/[0-9]/g)!.join(''));
+    const left = Number(toddler!.style.left!.match(/[0-9.]/g)!.join(''));
     const sliderWidth = Number(slider!.clientWidth!);
     const toddlerWidth = Number(toddler!.clientWidth!);
     const percents = left / (sliderWidth - toddlerWidth);
@@ -78,13 +87,24 @@ class SliderElement extends React.Component<ISliderElement> {
   public render() {
     return(
       <div
-        className={'thumb'}
         id={this.props.name}
-        onMouseDown={this.mouseDownHandler}
+        className={'thumb-container'}
         style={{ left: `${this.props.initialPos}%` }}
       >
+      <div
+        className={'thumb'}
+        onMouseDown={this.mouseDownHandler}
+
+      >
         <span/>
-        <p className={'time'}>{ this.state.time }</p>
+      </div>
+          <Input
+        className={'time'}
+        type={'time'}
+        value = {this.state.time}
+        onChange = {this.handleChange}
+        disableUnderline = {false}
+        />
       </div>
     );
   }

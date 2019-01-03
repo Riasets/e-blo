@@ -43,7 +43,7 @@ export function timeToString(time: number) {
     }
     hours = hours.concat(el);
   }
-  hours = hours.concat(":");
+  hours = Number(hours) < 10 ? '0'.concat(hours.concat(":")) : hours.concat(":");
   return hours.concat((time % 60 < 10) ? "0" + String(time % 60) : String(time % 60));
 }
 

@@ -77,11 +77,11 @@ class Day extends React.Component {
                    NumLessons={numLessons}
                    WeekDay={weekDay}
                    Month={month}/>
-                {sortedEvents[0] !== undefined  && sortedEvents.map((item, index) =>
+                { Boolean(sortedEvents.length)  && sortedEvents.map((item, index) =>
                   (<DayEvent Event={item} key={index}/>),
                 )
                 }
-                {sortedEvents[0] === undefined &&
+                { !sortedEvents.length &&
                     <h6>{randomPhrase()}</h6>
                 }
             </div>

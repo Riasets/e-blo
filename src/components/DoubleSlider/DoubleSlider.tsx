@@ -55,16 +55,48 @@ class DoubleSlider extends React.Component<IDoubleSliderProps>{
   }
   public render() {
 
-    const firstLeft =  Number(this.state.firstThumbLeft.match(/[0-9]/g)!.join(''));
-    const secondLeft =  Number(this.state.secondThumbLeft.match(/[0-9]/g)!.join(''));
+    const firstLeft =  Number(this.state.firstThumbLeft.match(/[0-9.]/g)!.join(''));
+    const secondLeft =  Number(this.state.secondThumbLeft.match(/[0-9.]/g)!.join(''));
 
-    const left = firstLeft > secondLeft ? this.state.secondThumbLeft : this.state.firstThumbLeft;
+    let left;
     let width;
-    if (this.state.secondThumbLeft.endsWith('%')) {
+
+    if (this.state.secondThumbLeft.endsWith('%') && this.state.firstThumbLeft.endsWith('%')) {
+
       width = Math.abs(firstLeft - secondLeft) + '%';
+      left = firstLeft > secondLeft ? this.state.secondThumbLeft : this.state.firstThumbLeft;
+
+    } else if (
+          this.state.secondThumbLeft.endsWith('%') && !this.state.firstThumbLeft.endsWith('%')) {
+
+      const sliderWidth = document.getElementById('slider')!.clientWidth;
+
+      width = Math.abs(firstLeft - sliderWidth * secondLeft * 0.01) + 'px';
+
+      left = firstLeft > sliderWidth * secondLeft * 0.01
+        ? this.state.secondThumbLeft
+        : this.state.firstThumbLeft;
+
+    } else if (
+      !this.state.secondThumbLeft.endsWith('%') && this.state.firstThumbLeft.endsWith('%')
+    ) {
+
+      const sliderWidth = document.getElementById('slider')!.clientWidth;
+
+      width = Math.abs(secondLeft - sliderWidth * firstLeft * 0.01) + 'px';
+
+      left = sliderWidth * firstLeft * 0.01 > secondLeft
+        ? this.state.secondThumbLeft
+        : this.state.firstThumbLeft;
+
     } else {
+
       width = Math.abs(firstLeft - secondLeft) + 'px';
+      left = firstLeft > secondLeft ? this.state.secondThumbLeft : this.state.firstThumbLeft;
+
     }
+    // Выравнивание по центру
+    left = `calc(${left} + .45rem)`;
 
     return(
       <div id={'slider'} className={this.props.classes}>
@@ -73,7 +105,9 @@ class DoubleSlider extends React.Component<IDoubleSliderProps>{
              style={{
                width,
                left,
-             }}/>
+             }}>
+          <span/><span/><span/>
+        </div>
         <SliderElement
           name={'firstThumb'}
           slider={'slider'}

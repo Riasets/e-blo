@@ -16,5 +16,19 @@
     background-color: #009688;
     height: 1.6rem;
     position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    span{
+      display: block;
+      border-radius: 50%;
+      width: .4rem;
+      height: .4rem;
+      background-color: #00695c;
+      margin-right: 0.3rem;
+    }
+    span:last-child{
+      margin-right: 0;
+    }
   }
 }
