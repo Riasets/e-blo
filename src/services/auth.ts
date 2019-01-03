@@ -1,4 +1,5 @@
 import { AuthFetch, NoAuthFetch } from "./instances";
+import { encodeBody } from "../utils/encode";
 
 const authFetches = {
   loginFetch: (user: Headers) => {
@@ -13,11 +14,9 @@ const authFetches = {
     };
     return AuthFetch.get('/api/refresh', options);
   },
-  registerUserFetch: (user: string) => {
-    const options: RequestInit = {
-      body: user,
-    };
-    return NoAuthFetch.post('/api/register', options);
+  registerUserFetch: (user: any) => {
+    const body = encodeBody(user);
+    return NoAuthFetch.post('/api/register', body);
   },
 };
 
