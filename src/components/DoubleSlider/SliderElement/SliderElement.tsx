@@ -2,9 +2,11 @@ import * as React from 'react';
 import { ISliderElement } from './SliderElement.d';
 import { timeToString } from "../../../utils/dayInfoParse";
 import Input from '@material-ui/core/Input';
+import InputTimeStyle from './InputTimeStyle';
 
 import './SliderElement.scss';
 import { timeStringToNum } from "../../../utils/dateParse";
+import withStyles from "@material-ui/core/styles/withStyles";
 
 class SliderElement extends React.Component<ISliderElement> {
 
@@ -17,7 +19,7 @@ class SliderElement extends React.Component<ISliderElement> {
   constructor(props:ISliderElement) {
     super(props);
 
-    const newTime = timeToString(props.initialPos * 14.4);
+    const newTime = timeToString(Math.round(props.initialPos * 14.39));
     this.state = {
       isMouseDown: false,
       shiftX: 0,
@@ -69,7 +71,7 @@ class SliderElement extends React.Component<ISliderElement> {
   public handleChange = (e: any) => {
     this.setState({ time: e.target.value });
     const toddler = document.getElementById(this.props.name);
-    const percents = timeStringToNum(e.target.value) / 14.4;
+    const percents = timeStringToNum(e.target.value) / 14.39;
     toddler!.style.left = percents + '%';
     this.props.getTime(this.state.time, this.props.name, percents + '%');
   }
@@ -81,10 +83,13 @@ class SliderElement extends React.Component<ISliderElement> {
     const sliderWidth = Number(slider!.clientWidth!);
     const toddlerWidth = Number(toddler!.clientWidth!);
     const percents = left / (sliderWidth - toddlerWidth);
-    return timeToString(Math.round(1440 * percents));
+    return timeToString(Math.round(1439 * percents));
   }
 
   public render() {
+
+    const { classes } = this.props;
+
     return(
       <div
         id={this.props.name}
@@ -104,9 +109,12 @@ class SliderElement extends React.Component<ISliderElement> {
         value = {this.state.time}
         onChange = {this.handleChange}
         disableUnderline = {false}
+        classes=
+          {{root: classes.formControl,
+            underline: classes.underline}}
         />
       </div>
     );
   }
 }
-export default  SliderElement;
+export default  withStyles(InputTimeStyle)(SliderElement);

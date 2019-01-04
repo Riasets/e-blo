@@ -23,8 +23,8 @@ class DoubleSlider extends React.Component<IDoubleSliderProps>{
     const firstLeft = props.firstInitialPos + "%";
     const secondLeft = props.secondInitialPos + "%";
     this.state = {
-      firstThumb: timeToString(props.firstInitialPos * 14.4),
-      secondThumb: timeToString(props.secondInitialPos * 14.4),
+      firstThumb: timeToString(props.firstInitialPos * 14.39),
+      secondThumb: timeToString(props.secondInitialPos * 14.39),
       firstThumbLeft: firstLeft,
       secondThumbLeft: secondLeft,
     };

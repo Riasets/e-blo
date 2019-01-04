@@ -4,5 +4,6 @@ export interface ISliderElement{
   name: string,
   slider: string,
   initialPos: number,
-  getTime: (time: string, name: string, left: string) => void, 
+  getTime: (time: string, name: string, left: string) => void,
+  classes: any;
 }
