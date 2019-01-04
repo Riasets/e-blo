@@ -29,7 +29,7 @@
     top: .2rem;
     padding: 0 1.1rem 0 0;
 }
-.create-event-modal-box{
+.create-event-paper{
     align-self: center;
     height: 70%;
     overflow: auto;
@@ -46,7 +46,7 @@
     padding: 1.1rem 0 1.3rem 0;
     border-radius: 9px;
     display: block;
-    width: 15.8rem;
+    width: 18.4rem;
     text-align: center;
     margin: 3.0rem auto 0 auto;
     cursor: pointer;
@@ -61,45 +61,50 @@
 }
 
 .create-event-modal-box {
-  .create-event-modal-box-header{
-    display: flex;
-    margin: 3rem 2.3rem 3.6rem 3rem;
-    justify-content: space-between;
-    img{
-      height: 2.4rem;
-      padding-top: .3rem;
+  padding: 2.7rem 3.4rem 4.5rem 3.4rem;
+    .create-event-modal-box-header {
+      display: flex;
+      margin: 0 0 3.6rem 0;
+      justify-content: space-between;
+      img {
+        height: 2.4rem;
+        padding-top: .3rem;
+      }
+
+      h3 {
+        font-size: 2.4rem;
+        line-height: 2.8rem;
+        margin: 0;
+        color: #424242;
+        font-weight: 500;
+      }
+    }
+    .create-event-input-field-flex-box-row {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      justify-content: space-evenly;
+    }
+    .create-event-input-field-flex-box-column {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      margin-right: 4rem;
+    }
+  .create-event-input-field-flex-box-column:last-child{
+    margin-right: 0;
+  }
+    .create-event-input-element {
+      margin: 0 0 1.5rem 0;
+      width: 100%;
     }
 
-    h3 {
-      font-size: 2.4rem;
-      line-height: 2.8rem;
-      margin: 0;
-      color: #424242;
-      font-weight: 500;
+    .create-event-input-field-describe {
+      margin: 2rem 0 0 0;
+
+      h5 {
+        font-weight: 400;
+        color: #424242;
+      }
     }
-  }
-  .create-event-input-field-flex-box-row{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: space-evenly;
-  }
-  .create-event-input-field-flex-box-column{
-    display: flex;
-    flex-direction: column;
-  }
-  .create-event-input-element{
-    margin: 0 0 1.5rem 0;
-    width: 30.0rem;
-  }
-
-  .create-event-input-field-describe{
-    margin: 2rem 3.4rem 0 3.4rem;
-
-    h5{
-      font-weight: 400;
-      color: #424242;
-    }
-  }
-
 }

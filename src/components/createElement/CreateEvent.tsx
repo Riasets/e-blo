@@ -149,7 +149,8 @@ class CreateEvent extends React.Component {
                     aria-describedby="simple-modal-description"
                     className="create-event-modal"
                 >
-                    <Paper className="create-event-modal-box">
+                    <Paper className={"create-event-paper"}>
+                      <div className="create-event-modal-box">
                         <div className="create-event-modal-box-header">
                             <h3>Создание события в расписании</h3>
                             <img onClick={this.closeModal}
@@ -279,7 +280,6 @@ class CreateEvent extends React.Component {
                             </div>
                         </div>
                         <div className="create-event-input-field-flex-box-column">
-                            Here is time
                             <DoubleSlider
                               setTime={this.setTime}
                               firstInitialPos={30}
@@ -298,6 +298,7 @@ class CreateEvent extends React.Component {
                             </div>
                         </div>
                         <a onClick={this.createEvent}><span>+</span>Добавить</a>
+                      </div>
                     </Paper>
                 </Modal>
             </div>
