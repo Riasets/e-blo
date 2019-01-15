@@ -3,6 +3,25 @@ const SwitchStyle = {
   switchBase: {
     color: '#757575',
   },
+  checked: {
+    '& + $bar': {
+      opacity: 1,
+    },
+  },
+  icon: {
+    boxShadow: 'none',
+  },
+  iconChecked: {
+    boxShadow: 'none',
+  },
+  colorSecondary: {
+    '&$checked': {
+      color: '#009688',
+      '& + $bar':{
+        backgroundColor: '#b2dfdb',
+      },
+    },
+  },
 };
-// TODO Узнать как совместить стили на поля ввода и тогла
+
 export default SwitchStyle;

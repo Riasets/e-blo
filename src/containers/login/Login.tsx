@@ -2,12 +2,10 @@ import FormControl from '@material-ui/core/FormControl';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import Paper from '@material-ui/core/Paper';
-import withStyles from '@material-ui/core/styles/withStyles';
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { compose, Dispatch } from 'redux';
-import InputFieldStyle from '../../styles/InputFieldStyle';
+import { Dispatch } from 'redux';
 
 import { Actions } from '../../store/actions/actions';
 import { ILoginProps } from './Login.d';
@@ -142,7 +140,4 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
   },
 });
 
-export default compose(
-    connect(mapStateToProps, mapDispatchToProps),
-    withStyles(InputFieldStyle),
-)(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

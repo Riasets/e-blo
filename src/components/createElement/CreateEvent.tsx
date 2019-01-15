@@ -9,11 +9,9 @@ import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import Paper from '@material-ui/core/Paper';
 import * as React from 'react';
-import withStyles from '@material-ui/core/styles/withStyles';
 import MultilineField from './MultilineField';
 import DoubleSlider from '../DoubleSlider/DoubleSlider';
 
-import InputFieldStyle from '../../styles/InputFieldStyle';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import { Actions } from '../../store/actions/actions';
@@ -162,8 +160,6 @@ class CreateEvent extends React.Component {
                                 <div className="create-event-input-element">
                                     <FormControl fullWidth={true} required={true}>
                                         <InputLabel htmlFor="name"
-                                                    classes={{ root: classes.labelStyle,
-                                                      shrink: classes.shrink}}
                                         >Название события</InputLabel>
                                         <Input autoFocus={true}
                                                error = {errorName}
@@ -171,12 +167,9 @@ class CreateEvent extends React.Component {
                                                name="name"
                                                onChange={this.handleChange}
                                                id="name"
-                                               classes=
-                                                   {{root: classes.formControl,
-                                                     underline: classes.underline}}
                                         />
                                         { errorName &&
-                                        <FormHelperText id="component-error-text">
+                                        <FormHelperText id="component-error-text" error={errorName}>
                                             Название должно быть не короче 4 символов
                                         </FormHelperText>
                                         }
@@ -242,7 +235,8 @@ class CreateEvent extends React.Component {
                                             required={true}
                                         />
                                         { errorStartDay &&
-                                        <FormHelperText id="component-error-text">
+                                        <FormHelperText id="component-error-text"
+                                                        error={errorStartDay}>
                                             Введите начальный день!
                                         </FormHelperText>
                                         }
@@ -269,7 +263,8 @@ class CreateEvent extends React.Component {
                                             }
                                         </TextField>
                                         { errorWhenRepeat &&
-                                        <FormHelperText id="component-error-text">
+                                        <FormHelperText id="component-error-text"
+                                                        error={errorWhenRepeat}>
                                             Выберите частоту повторения события!
                                         </FormHelperText>
                                         }
@@ -314,5 +309,4 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
   },
 });
 
-export default withStyles(InputFieldStyle)(connect(null, mapDispatchToProps)(CreateEvent));
-// TODO Why compose throw error {} is not assginable to never
+export default connect(null, mapDispatchToProps)(CreateEvent);

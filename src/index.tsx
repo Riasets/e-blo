@@ -7,15 +7,19 @@ import App from './App';
 import './index.css';
 import registerServiceWorker from './registerServiceWorker';
 import { persistor, store } from './store/storeConfig';
+import { MuiThemeProvider } from '@material-ui/core/styles';
+import theme from './styles/ListTheme';
 
 ReactDOM.render(
-    <Provider store={store}>
-        <PersistGate loading={null} persistor={persistor}>
-                <BrowserRouter >
-                        <App />
-                </BrowserRouter>
-        </PersistGate>
-    </Provider>,
-    document.getElementById('root') as HTMLElement,
+  <Provider store={store}>
+    <PersistGate loading={null} persistor={persistor}>
+      <BrowserRouter>
+        <MuiThemeProvider theme={theme}>
+          <App/>
+        </MuiThemeProvider>
+      </BrowserRouter>
+    </PersistGate>
+  </Provider>,
+  document.getElementById('root') as HTMLElement,
 );
 registerServiceWorker();

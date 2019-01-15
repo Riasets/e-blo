@@ -3,15 +3,13 @@ import FormControl from "@material-ui/core/FormControl";
 import Input from "@material-ui/core/Input";
 import InputLabel from "@material-ui/core/InputLabel";
 import Paper from "@material-ui/core/Paper";
-import withStyles from "@material-ui/core/styles/withStyles";
 import * as React from 'react';
 import { Link, Redirect } from "react-router-dom";
 
 import { connect } from "react-redux";
-import { compose, Dispatch } from "redux";
+import { Dispatch } from "redux";
 import { Actions } from "../../store/actions/actions";
 import "./register.scss";
-import InputFieldStyle from '../../styles/InputFieldStyle';
 
 class Register extends React.Component {
 
@@ -100,7 +98,8 @@ class Register extends React.Component {
                                         id="component-error-text"
                                         classes={{
                                           root: classes.errorRoot,
-                                        }}>
+                                        }}
+                                        error={shortEmail}>
                                       Наверное это не э-мейл...
                                     </FormHelperText>
                                     }
@@ -133,6 +132,7 @@ class Register extends React.Component {
                                         classes={{
                                           root: classes.errorRoot,
                                         }}
+                                        error={shortPassword}
                                     >
                                       Пароль слишком короткий
                                     </FormHelperText>
@@ -165,7 +165,8 @@ class Register extends React.Component {
                                             id="component-error-text"
                                             classes={{
                                               root: classes.errorRoot,
-                                            }}>
+                                            }}
+                                            error={noEqualPassword}>
                                           Пароли не совпадают
                                         </FormHelperText>
                                     }
@@ -209,7 +210,4 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
   },
 });
 
-export default compose(
-    withStyles(InputFieldStyle),
-    connect(mapStateToProps, mapDispatchToProps),
-)(Register);
+export default connect(mapStateToProps, mapDispatchToProps)(Register);
