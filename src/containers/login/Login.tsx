@@ -47,7 +47,6 @@ class Login extends React.Component<ILoginProps> {
   }
 
   public render() {
-    const { classes } = this.props;
     const { email, password } = this.state;
     const { error } = this.props.AuthInfo;
     return (
@@ -59,8 +58,6 @@ class Login extends React.Component<ILoginProps> {
                             <FormControl fullWidth={true}>
                                 <InputLabel
                                     htmlFor="email-simple"
-                                    classes={{ root: classes.labelStyle,
-                                      shrink: classes.shrink}}
                                 >
                                     Э-мейл
                                 </InputLabel>
@@ -71,18 +68,12 @@ class Login extends React.Component<ILoginProps> {
                                     onChange={this.handleChange}
                                     id="email-simple"
                                     fullWidth={true}
-                                    classes=
-                                      {{root: classes.formControl,
-                                        underline: classes.underline,
-                                      }}
                                 />
                             </FormControl>
                         </div>
                         <div className={'login-input'}>
                             <FormControl fullWidth={true}>
                                 <InputLabel
-                                            classes={{ root: classes.labelStyle,
-                                              shrink: classes.shrink}}
                                             htmlFor="password-simple">
                                     Пароль
                                 </InputLabel>
@@ -92,11 +83,6 @@ class Login extends React.Component<ILoginProps> {
                                     name={'password'}
                                     onChange={this.handleChange}
                                     id="password-simple"
-                                    classes=
-                                      {{root: classes.formControl,
-                                        underline: classes.underline,
-                                        inputType: classes.inputType,
-                                      }}
                                 />
                             </FormControl>
                         </div>

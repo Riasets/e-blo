@@ -12,4 +12,4 @@ export const AuthFetch = axios.create({
 });
 
 AuthFetch.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
-AuthFetch.defaults.headers['X-custom-header'] = 'token';
+// AuthFetch.defaults.headers['X-custom-header'] = 'token';

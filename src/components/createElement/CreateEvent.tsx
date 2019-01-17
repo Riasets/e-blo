@@ -11,6 +11,7 @@ import Paper from '@material-ui/core/Paper';
 import * as React from 'react';
 import MultilineField from './MultilineField';
 import DoubleSlider from '../DoubleSlider/DoubleSlider';
+import LessonPicker from '../LessonPicker/LessonPicker';
 
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
@@ -204,9 +205,6 @@ class CreateEvent extends React.Component {
                                     </FormControl>
                                 </div>
                                 }
-
-                            </div>
-                            <div className="create-event-input-field-flex-box-column">
                                 <div className="create-event-input-element">
                                     <FormControlLabel
                                         control={
@@ -220,6 +218,8 @@ class CreateEvent extends React.Component {
                                         label="Повторяющееся событие"
                                     />
                                 </div>
+                            </div>
+                            <div className="create-event-input-field-flex-box-column">
                                 <div className="create-event-input-element">
                                     <FormControl required={true}>
                                         <TextField

@@ -76,9 +76,7 @@ class Register extends React.Component {
                             <h3>Регистрация</h3>
                             <div className="register-input">
                                 <FormControl fullWidth={true} required={true}>
-                                    <InputLabel htmlFor="email-simple"
-                                                classes={{ root: classes.labelStyle,
-                                                  shrink: classes.shrink}}>
+                                    <InputLabel htmlFor="email-simple">
                                       Э-мейл
                                     </InputLabel>
                                     <Input autoFocus={true}
@@ -86,19 +84,10 @@ class Register extends React.Component {
                                            value={email} name={"email"}
                                            onChange={this.handleChange}
                                            id="email-simple"
-                                           classes=
-                                             {{root: classes.formControl,
-                                               underline: classes.underline,
-                                               error: classes.error,
-                                               focused: classes.focused,
-                                             }}
                                            fullWidth={true}/>
                                     { shortEmail &&
                                     <FormHelperText
                                         id="component-error-text"
-                                        classes={{
-                                          root: classes.errorRoot,
-                                        }}
                                         error={shortEmail}>
                                       Наверное это не э-мейл...
                                     </FormHelperText>
@@ -107,9 +96,7 @@ class Register extends React.Component {
                             </div>
                             <div className="register-input">
                                 <FormControl fullWidth={true} required={true}>
-                                    <InputLabel htmlFor="password-simple"
-                                                classes={{ root: classes.labelStyle,
-                                                  shrink: classes.shrink}}>
+                                    <InputLabel htmlFor="password-simple">
                                       Пароль
                                     </InputLabel>
                                     <Input
@@ -118,20 +105,10 @@ class Register extends React.Component {
                                       value={password}
                                       name={"password"}
                                       onChange={this.handleChange}
-                                      classes=
-                                        {{root: classes.formControl,
-                                          underline: classes.underline,
-                                          inputType: classes.inputType,
-                                          error: classes.error,
-                                          focused: classes.focused,
-                                        }}
                                       id="password-simple"/>
                                     { shortPassword &&
                                     <FormHelperText
                                         id="component-error-text"
-                                        classes={{
-                                          root: classes.errorRoot,
-                                        }}
                                         error={shortPassword}
                                     >
                                       Пароль слишком короткий
@@ -141,9 +118,7 @@ class Register extends React.Component {
                             </div>
                             <div className="register-input">
                                 <FormControl fullWidth={true} required={true}>
-                                    <InputLabel htmlFor="password-repeat-simple"
-                                                classes={{ root: classes.labelStyle,
-                                                  shrink: classes.shrink}}>
+                                    <InputLabel htmlFor="password-repeat-simple">
                                       Повторите пароль
                                     </InputLabel>
                                     <Input
@@ -152,20 +127,10 @@ class Register extends React.Component {
                                       value={passwordRepeat}
                                       name={"passwordRepeat"}
                                       onChange={this.handleChange}
-                                      classes=
-                                        {{root: classes.formControl,
-                                          underline: classes.underline,
-                                          inputType: classes.inputType,
-                                          error: classes.error,
-                                          focused: classes.focused,
-                                        }}
                                       id="password-repeat-simple"/>
                                     { noEqualPassword &&
                                         <FormHelperText
                                             id="component-error-text"
-                                            classes={{
-                                              root: classes.errorRoot,
-                                            }}
                                             error={noEqualPassword}>
                                           Пароли не совпадают
                                         </FormHelperText>
