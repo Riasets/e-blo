@@ -53,9 +53,17 @@ class CreateEvent extends React.Component {
     this.setState({ [name]: value });
   }
 
-  public handleToggle(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement| any>) {
-    const { name, checked } = e.target;
-    this.setState({ [name]: checked });
+  public handleChangePicker = (name: string, value: number) => {
+    this.setState(state => ({
+      [name]: value,
+    }));
+  }
+
+  public handleToggle(name: string) {
+    console.log(name, 'hello');
+    this.setState(state => ({
+      [name]: !state[name],
+    }));
   }
 
   public openModal() {
@@ -183,13 +191,21 @@ class CreateEvent extends React.Component {
                                             <Switch
                                                 checked={isLesson}
                                                 name="isLesson"
-                                                onChange={this.handleToggle}
                                                 value="isLesson"
+
                                             />
                                         }
                                         label="Это пара?"
                                     />
                                 </div>
+                                <LessonPicker
+                                  toggleState={isLesson}
+                                  handleChange={this.handleToggle}
+                                  name = {'Это пара?'}
+                                  valueToggle={'isLesson'}
+                                  setLesson={this.handleChangePicker}
+                                  valuePicker={'numberOfLesson'}
+                                />
                                 { isLesson &&
                                 <div className="create-event-input-element">
                                     <FormControl fullWidth={true}>
@@ -211,7 +227,6 @@ class CreateEvent extends React.Component {
                                             <Switch
                                                 checked={repeat}
                                                 name="repeat"
-                                                onChange={this.handleToggle}
                                                 value="repeat"
                                             />
                                         }

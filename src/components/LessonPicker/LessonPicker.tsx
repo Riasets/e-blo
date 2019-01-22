@@ -14,13 +14,18 @@ class LessonPicker extends React.Component<ILessonPicker> {
   };
 
   public setLesson = (numLesson: number) => {
-    this.props.setLesson(numLesson);
+    this.props.setLesson(this.props.valuePicker, numLesson);
   }
 
   public addNum = () => {
     this.setState((state: {number: number[]}) => ({
       number: state.number.push(state.number.length + 1),
     }));
+  }
+
+  public handleToggle = () => {
+    this.props.handleChange(this.props.valueToggle);
+    console.log('darova');
   }
 
   public render() {
@@ -31,7 +36,7 @@ class LessonPicker extends React.Component<ILessonPicker> {
         <Switch
           checked={this.props.toggleState}
           name="isLesson"
-          onChange={this.props.handleChange}
+          onChange={this.handleToggle}
           value="isLesson"
         />
           {

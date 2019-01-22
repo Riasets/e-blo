@@ -2,10 +2,12 @@ import { CSSProperties } from "react";
 
 export default interface ILessonPicker {
   toggleState: boolean,
-  handleChange: () => void,
+  handleChange: (name: string) => void,
   style?: CSSProperties,
   containerClass?: string,
   headerClass?: string,
   name: string,
-  setLesson: (numLesson: number) => void,
+  setLesson: (name: string, numLesson: number) => void,
+  valueToggle: string,
+  valuePicker: string,
 }
