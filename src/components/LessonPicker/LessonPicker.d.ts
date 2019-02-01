@@ -6,6 +6,8 @@ export default interface ILessonPicker {
   style?: CSSProperties,
   containerClass?: string,
   headerClass?: string,
+  elementClass?: string,
+  checkedElementClass?: string,
   name: string,
   setLesson: (name: string, numLesson: number) => void,
   valueToggle: string,

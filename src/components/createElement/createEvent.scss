@@ -32,8 +32,8 @@
 .create-event-paper{
     align-self: center;
     height: 70%;
-    overflow: auto;
     width: 75.0rem;
+    overflow: hidden;
 }
 
 .create-event-modal-box>a{
@@ -91,6 +91,32 @@
       flex-direction: column;
       width: 100%;
       margin-right: 4rem;
+      .lesson-picker-header{
+        margin: .6rem 0 .6rem 0;
+        font-size: 1.6rem;
+        color: #424242;
+        font-weight: 400;
+      }
+      .lesson-picker-element{
+        font-size: 1.6rem;
+        line-height: 2.6rem;
+        width: 2.6rem;
+        height: 2.6rem;
+        border-radius: 50%;
+        text-align: center;
+        display: block;
+        cursor: pointer;
+        min-width: 2.6rem;
+        margin: 1.4rem .8rem 1.4rem 0;
+      }
+      .lesson-picker-element:last-child{
+        border: .1rem solid #999;
+      }
+      .lesson-picker-selected-element{
+        background-color: #009688;
+        color: #fff;
+        font-weight: 300;
+      }
     }
   .create-event-input-field-flex-box-column:last-child{
     margin-right: 0;

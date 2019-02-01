@@ -60,7 +60,6 @@ class CreateEvent extends React.Component {
   }
 
   public handleToggle(name: string) {
-    console.log(name, 'hello');
     this.setState(state => ({
       [name]: !state[name],
     }));
@@ -116,7 +115,6 @@ class CreateEvent extends React.Component {
             name,
             description,
             repeat,
-            numberOfLesson,
             startDay,
             whenRepeat,
             isLesson } = this.state;
@@ -165,7 +163,10 @@ class CreateEvent extends React.Component {
                                  alt="close"/>
                         </div>
                         <div  className={'create-event-input-field-flex-box-row'}>
-                            <div className="create-event-input-field-flex-box-column">
+                            <div
+                              style={{ maxWidth: "calc(50% - 4rem)" }}
+                              className="create-event-input-field-flex-box-column"
+                            >
                                 <div className="create-event-input-element">
                                     <FormControl fullWidth={true} required={true}>
                                         <InputLabel htmlFor="name"
@@ -184,43 +185,17 @@ class CreateEvent extends React.Component {
                                         }
                                     </FormControl>
                                 </div>
-
-                                <div className="create-event-input-element">
-                                    <FormControlLabel
-                                        control={
-                                            <Switch
-                                                checked={isLesson}
-                                                name="isLesson"
-                                                value="isLesson"
-
-                                            />
-                                        }
-                                        label="Это пара?"
-                                    />
-                                </div>
                                 <LessonPicker
                                   toggleState={isLesson}
                                   handleChange={this.handleToggle}
-                                  name = {'Это пара?'}
+                                  name = {isLesson ? 'Это пара? А какая по счету?' : 'Это пара?'}
                                   valueToggle={'isLesson'}
                                   setLesson={this.handleChangePicker}
                                   valuePicker={'numberOfLesson'}
+                                  headerClass={'lesson-picker-header'}
+                                  elementClass={'lesson-picker-element'}
+                                  checkedElementClass={'lesson-picker-selected-element'}
                                 />
-                                { isLesson &&
-                                <div className="create-event-input-element">
-                                    <FormControl fullWidth={true}>
-                                        <TextField
-                                            value={numberOfLesson}
-                                            name="numberOfLesson"
-                                            onChange={this.handleChange}
-                                            label="Номер пары"
-                                            type="number"
-                                            required={true}
-
-                                        />
-                                    </FormControl>
-                                </div>
-                                }
                                 <div className="create-event-input-element">
                                     <FormControlLabel
                                         control={
