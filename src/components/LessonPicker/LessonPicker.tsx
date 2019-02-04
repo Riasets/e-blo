@@ -22,7 +22,6 @@ class LessonPicker extends React.Component<ILessonPicker> {
 
   public setScroll = (ref: any) => {
     this.scroll = ref;
-    this.scroll.addEventListener('wheel', this.handleScrollX);
   }
 
   public handleScrollX = (event: any) => {
@@ -55,6 +54,10 @@ class LessonPicker extends React.Component<ILessonPicker> {
     if (this.state.number.length !== prevState.number.length) {
       this.scroll.scrollLeft = this.scroll.scrollWidth - this.scroll.clientWidth;
     }
+  }
+  // Need here, not at setRef because of crash when we unmount component
+  public componentDidMount(): void {
+    this.scroll.addEventListener('wheel', this.handleScrollX);
   }
 
   public render() {
