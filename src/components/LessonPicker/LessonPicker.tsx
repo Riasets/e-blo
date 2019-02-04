@@ -17,6 +17,21 @@ class LessonPicker extends React.Component<ILessonPicker> {
     number: ['1', '2', '3', '4', '5'],
     checkedNumber: null,
   };
+  // Ref from scrollRef for manipulate scrollLeft
+  private scroll: any;
+
+  public setScroll = (ref: any) => {
+    this.scroll = ref;
+    this.scroll.addEventListener('wheel', this.handleScrollX);
+  }
+
+  public handleScrollX = (event: any) => {
+    if (event.deltaY > 0) {
+      this.scroll.scrollLeft += 15;
+    } else {
+      this.scroll.scrollLeft -= 15;
+    }
+  }
 
   public setLesson = (numLesson: string) => {
     this.props.setLesson(this.props.valuePicker, Number(numLesson));
@@ -33,8 +48,18 @@ class LessonPicker extends React.Component<ILessonPicker> {
     this.props.handleChange(this.props.valueToggle);
   }
 
+  // scroll to end if we added new lesson
+  public componentDidUpdate(prevProps: Readonly<ILessonPicker>,
+                            prevState: Readonly<any>,
+                            snapshot?: any): void {
+    if (this.state.number.length !== prevState.number.length) {
+      this.scroll.scrollLeft = this.scroll.scrollWidth - this.scroll.clientWidth;
+    }
+  }
+
   public render() {
     const num = this.state.number;
+
     return (
       <div style={this.props.style} className={this.props.containerClass}>
         <h6 className={this.props.headerClass}>{this.props.name}</h6>
@@ -51,6 +76,7 @@ class LessonPicker extends React.Component<ILessonPicker> {
           />
           <PerfectScrollbar
             className={'scroll-box'}
+            containerRef={this.setScroll}
           >
               { this.props.toggleState &&
                 num.map((item: any, index: number) => (

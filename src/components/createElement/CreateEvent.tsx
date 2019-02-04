@@ -177,6 +177,7 @@ class CreateEvent extends React.Component {
                                                name="name"
                                                onChange={this.handleChange}
                                                id="name"
+                                               autoComplete={"off"}
                                         />
                                         { errorName &&
                                         <FormHelperText id="component-error-text" error={errorName}>
